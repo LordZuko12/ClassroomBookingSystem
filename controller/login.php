@@ -22,18 +22,18 @@ if($_SERVER['REQUEST_METHOD']=="POST")
             header('Location:../adminhome.html');
         }else{
 
-            if($status==1)
+            if($status)
             {
                 header('Location:../facultyhome.html');
             }else{
-                header('Location:../approveresgitration.html');
+                header('Location:../registrationPending.html');
             }
 
         }
 
     }else{
 
-        echo "Invalid User"."<br>";
+        header('Location:../invalidUser.html');
     }
 
 }

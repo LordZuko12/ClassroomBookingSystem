@@ -69,7 +69,7 @@ function checkUser($id, $password){
 
 function getUserType($id, $password){
 
-    $sql = "SELECT type FROM user WHERE username ='$id' AND password = '$password'";
+    $sql = "SELECT * FROM user WHERE username ='$id' AND password = '$password'";
     $result = execute($sql);
     $res= mysqli_fetch_array($result);
 
