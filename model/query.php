@@ -91,6 +91,20 @@ function addDepartment($deptname){
     }
 }
 
+function getDeptList(){
 
+    $sql = "SELECT * From department";
+    $result = execute($sql);
+
+    $deptList = array();
+
+    for($i =0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $deptList[$i] = $row;
+    }
+    //$res = mysqli_fetch_array($result);
+
+    return $deptList;
+}
 
 ?>

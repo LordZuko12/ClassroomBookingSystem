@@ -5,9 +5,10 @@ var validEmail = true;
 var validPhone = true;
 var validPass = true;
 var validRpass = true;
+var validDept = true;
 
 function isValidName(fname){
-    if(/^[A-Za-z]+(?:[ _-][A-Za-z]+)*$/.test(fname)){
+    if(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(fname)){
         return true;
     }
     else{
@@ -156,10 +157,7 @@ function validateForm() {
     var phone = document.getElementById("phone");
     var password = document.getElementById("password");
     var rePassword = document.getElementById("repassword");
-    var cse = document.getElementById("cse").checked;
-    var bba = document.getElementById("bba").checked;
-    var eee = document.getElementById("eee").checked;
-
+    var dept = document.getElementById("dept");
 
 
     //Full Name
@@ -252,9 +250,15 @@ function validateForm() {
     }
 
     //Department
-    if(cse===false && bba ===false && eee===false)
+    if(dept.value==="select")
     {
         document.getElementById("deptSpan").innerText = "Department must be selected!";
+        validDept = false;
+        console.log(dept.value);
+    }else{
+
+        document.getElementById("deptSpan").innerText = "";
+        validDept = true;
     }
 
     //Password
@@ -288,7 +292,7 @@ function validateForm() {
     }
 
     //Checks all validation
-    if(!validName || !validId || !validEmail || !validPhone || !validPass || !validRpass)
+    if(!validName || !validId || !validEmail || !validPhone || !validPass || !validRpass || !validDept)
     {
         valid = false;
     }else

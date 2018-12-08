@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $dept = htmlentities(trim($_POST['department']), ENT_QUOTES);
     $password = md5($_POST['password']);
 
-    echo $id." ".$email." ".$name." ".$phone." ".$dept." ".$password;
+    //echo $id." ".$email." ".$name." ".$phone." ".$dept." ".$password;
 
     $res =  getDepartmentId($dept);
     $deptid = $res['id'];

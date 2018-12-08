@@ -47,12 +47,17 @@
 						<span class="focus-input100" data-placeholder="&#xe88e;"></span>
 						<p class="input100">Department</p>
 
-
-						<input id="cse" class="input101" type="radio" name="department" value="cse"> CSE
-                        <input id="eee" class="input101" type="radio" name="department" value="eee"> EEE
-						<input id="bba" class="input101" type="radio" name="department" value="bba"> BBA<br>
-						<span class="input103" id="deptSpan"></span>
-
+                        <select id="dept" name="department" class="input102">
+                            <option value="select">SELECT</option>
+                            <?php
+                            include('controller/fetchList.php');
+                            $dept = getDeptName();
+                            var_dump($dept);
+                            foreach($dept as $d) {
+                                if($d['deptname']!="admin"){?>
+                                    <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
+                                <?php }}?>
+                        </select>
 
 					</div>
 					<div class="wrap-input100 validate-input" >
