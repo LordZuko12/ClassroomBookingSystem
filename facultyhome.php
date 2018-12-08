@@ -20,7 +20,13 @@
 </head>
 
 <body id="top">
-
+<?php
+session_start();
+if(!isset($_SESSION['username']))
+{
+    header("location:index.html");
+}
+?>
 <header class="s-header header">
 
     <div class="header__logo">
@@ -55,28 +61,43 @@
     </nav>
 
 </header>
-<section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
-    <div class="login100-form validate-form p-b-33 p-t-5">
-        <h4>ABOUT</h4>
 
-        <p>
-            Tareq Mohammad<br>
-            American Internatonal University-Bangladesh<br>
-            CSE<cse>
-            16-31181-1
-        </p>
+
+
+<section class="s-extra s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');"">
+<div class="login101-form">
+    <p>Date/Time: <span id="datetime"></span></p>
+
+    <script >
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = dt.toLocaleString();
+    </script>
+</div>
+<br><br><br>
+<div class="row login102-form">
+    <p><h1>WELCOME TO THE CLASS BOOKING SYSTEM</h1></p>
+</div>
+<br><br><br>
+
+<div class="row login100-form">
+
+    <div class="col-seven md-six tab-full popular">
+        <h3>Today</h3>
+
 
     </div>
-    <br>
-    <div class="login100-form validate-form p-b-33 p-t-5">
-        <h4>Contact Info</h4>
 
-        <p>
-            tareq@gmail.com <br>
-            Phone: 01982667024
-        </p>
+</div>
+<br><br><br>
+<div class="row login100-form">
+
+    <div class="col-seven md-six tab-full popular">
+        <h3>Upcoming</h3>
+
 
     </div>
+
+</div>
 </section>
 <footer class="s-footer">
 
