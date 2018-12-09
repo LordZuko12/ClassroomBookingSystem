@@ -159,7 +159,6 @@ function validateForm() {
     var rePassword = document.getElementById("repassword");
     var dept = document.getElementById("dept");
 
-
     //Full Name
     if(name.value.length===0)
     {

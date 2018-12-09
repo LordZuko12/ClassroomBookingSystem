@@ -107,4 +107,91 @@ function getDeptList(){
     return $deptList;
 }
 
+function getUser($username){
+
+    $sql = "SELECT * From user WHERE username = '$username'";
+    $result = execute($sql);
+
+    $user = mysqli_fetch_array($result);
+
+    return $user;
+
+}
+
+function getCourseList($deptId){
+
+    $sql = "SELECT coursename FROM course WHERE deptid = '$deptId'";
+
+    $result = execute($sql);
+    $courseList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $courseList[$i] = $row;
+    }
+
+    return $courseList;
+}
+
+function checkClassRoom($date, $startTime, $endTime){
+
+    $sql = "SELECT classid FROM booking WHERE date ='$date' AND starttime = '$startTime' AND endtime = '$endTime'";
+
+    $result = execute($sql);
+
+    $classList = mysqli_fetch_array($result);
+
+    return $classList;
+}
+
+function getClassRoom($roomType){
+
+    $sql = "SELECT * FROM classroom WHERE typeid = '$roomType'";
+
+    $result = execute($sql);
+    $roomList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $roomList[$i] = $row;
+    }
+
+    return $roomList;
+
+}
+
+function getClassId($roomName){
+
+    $sql = "SELECT * From classroom WHERE roomname = '$roomName'";
+    $result = execute($sql);
+
+    $room = mysqli_fetch_array($result);
+
+    return $room;
+}
+
+function getCourseId($courseName){
+
+    $sql = "SELECT * From course WHERE coursename = '$courseName'";
+    $result = execute($sql);
+    $course = mysqli_fetch_array($result);
+
+    return $course;
+}
+
+function addNewBooking($userId, $courseId, $classId, $day, $startTime, $endTime){
+
+    $sql = "INSERT INTO booking(userid, classid, courseid, status, date, description, starttime, endtime) VALUES ('$userId', '$classId', '$courseId', '1', '$day', 'Booked' ,'$startTime' ,'$endTime')";
+    $result = execute($sql);
+
+    if($result==true){
+
+        return true;
+    }else{
+
+        return false;
+    }
+
+}
+
 ?>

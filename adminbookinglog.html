@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-        <style >
+    <style >
         a{text-decoration: none;
-            }
+        }
     </style>
     <meta charset="utf-8">
     <title>CBS</title>
@@ -14,58 +14,102 @@
     <link rel="stylesheet" href="_css/base.css">
     <script src="_js/modernizr.js"></script>
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
 </head>
 
 <body id="top">
 
-    <header class="s-header header">
+<header class="s-header header">
 
-        <div class="header__logo">
-            <a class="logo" href="home.html">
-                <img src="images/logo.svg" alt="Homepage">
-            </a>
-        </div>
-
- 
-
-        <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
-        <nav class="header__nav-wrap">
-
-            <h2 class="header__nav-heading h6">Navigate to</h2>
-
-            <ul class="header__nav">
-                <li class="current"><a href="home.html" title="">Home</a></li>
-                <li class="has-children">
-                    <a href="#0" title="">Bookings</a>
-                    <ul class="sub-menu">
-                        <li><a href="newbookings.html">New Booking</a></li>
-                        <li><a href="cancelbookings.html">Cancel Booking</a></li>
-                    </ul>
-                </li>
-                <li><a href="bookinglog.html" title="">Booking Log</a></li>
-                <li><a href="profile.html" title="">Profile</a></li>
-                <li><a href="controller/logout.php" title="">Log Out</a></li>
-            </ul> 
-
-            <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
-
-        </nav>
-
-    </header>
+    <div class="header__logo">
+        <a class="logo" href="home.html">
+            <img src="images/logo.svg" alt="Homepage">
+        </a>
+    </div>
 
 
 
-    <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
-        <section>
-    <footer class="s-footer">
+    <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+    <nav class="header__nav-wrap">
 
-        
-    </footer> 
+        <h2 class="header__nav-heading h6">Navigate to</h2>
 
-    <script src="_js/jquery-3.2.1.min.js"></script>
-    <script src="_js/plugins.js"></script>
-    <script src="_js/main.js"></script>
+        <ul class="header__nav">
+            <li class="current"><a href="home.html" title="">Home</a></li>
+            <li class="has-children">
+                <a href="#0" title="">Bookings</a>
+                <ul class="sub-menu">
+                    <li><a href="newbookings.php">New Booking</a></li>
+                    <li><a href="cancelbookings.html">Cancel Booking</a></li>
+                </ul>
+            </li>
+            <li><a href="bookinglog.html" title="">Booking Log</a></li>
+            <li><a href="profile.html" title="">Profile</a></li>
+            <li><a href="controller/logout.php" title="">Log Out</a></li>
+        </ul>
+
+        <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+    </nav>
+
+</header>
+
+
+
+<section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
+
+
+    <div class="login101-form">
+        <p>SORT BY: </p>
+
+        <select class="input102">
+            <option value="month">Month</option>
+            <option value="week">Week</option>
+            <option value="faculty">Faculty</option>
+            <option value="course">Course</option>
+            <option value="room">Room</option>
+            <option value="time">Time</option>
+        </select>
+    </div>
+    <br><br>
+    <div class="login104-form ">
+        <p><h2>Booking Log</h2></p>
+        <hr >
+        <form class="login100-form validate-form p-b-33 p-t-5">
+            <div >
+                <input class="input100" type="text" name="id" placeholder="User ID">
+            </div>
+
+            <div >
+                <input class="input100" type="text" name="coursename" placeholder="Course Name">
+            </div>
+            <div >
+                <input class="input100" type="text" name="coursetime" placeholder="Course Time">
+            </div>
+            <div >
+                <input class="input100" type="text" name="Roomnumber" placeholder="Room Number">
+            </div>
+
+        </form>
+    </div>
+    </div>
+    <br><br>
+    <div class="login103-form">
+        <p>SEARCH</p>
+
+    </div>
+
+</section>
+<footer class="s-footer">
+
+
+</footer>
+
+<script src="_js/jquery-3.2.1.min.js"></script>
+<script src="_js/plugins.js"></script>
+<script src="_js/main.js"></script>
 
 </body>
 

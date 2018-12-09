@@ -21,10 +21,9 @@
 	<noscript>
 		<META HTTP-EQUIV="Refresh" CONTENT="0;URL=noJS.html">
 	</noscript>
-
 </head>
 <body>
-	
+
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
@@ -52,12 +51,14 @@
                             <?php
                             include('controller/fetchList.php');
                             $dept = getDeptName();
-                            var_dump($dept);
+                            //var_dump($dept);
                             foreach($dept as $d) {
                                 if($d['deptname']!="admin"){?>
-                                    <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
-                                <?php }}?>
+                                <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
+                            <?php }}?>
                         </select>
+
+						<span class="input103" id="deptSpan"></span>
 
 					</div>
 					<div class="wrap-input100 validate-input" >

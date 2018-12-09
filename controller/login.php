@@ -17,6 +17,10 @@ if($_SERVER['REQUEST_METHOD']=="POST")
         $type = $res['type'];
         $status = $res['status'];
 
+        //print_r($status);
+
+        //echo $status;
+
         if($type==1)
         {
             header('Location:../adminhome.html');
@@ -24,7 +28,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 
             if($status)
             {
-                header('Location:../facultyhome.html');
+                header('Location:../facultyhome.php');
             }else{
                 header('Location:../registrationPending.html');
             }
