@@ -273,7 +273,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <link rel="stylesheet" type="text/css" href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <script type="text/javascript" src="../js/selectBookingInfo.js"></script>
-
+    <
 </head>
 
 <body id="top">
@@ -287,38 +287,70 @@ if(!isset($_SESSION['username']))
 ?>
 
 <header class="s-header header">
+            <?php
+            if($_SESSION['userType']==1){?>
+                <div class="header__logo">
+                    <a class="logo" href="../adminhome.php">
+                        <img src="../images/logo.svg" alt="Homepage">
+                    </a>
+                </div>
 
-    <div class="header__logo">
-        <a class="logo" href="../home.html">
-            <img src="../images/logo.svg" alt="Homepage">
-        </a>
-    </div>
 
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+                <nav class="header__nav-wrap">
 
+                    <h2 class="header__nav-heading h6">Navigate to</h2>
 
-    <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
-    <nav class="header__nav-wrap">
+                    <ul class="header__nav">
+                        <li class="current"><a href="../adminhome.php" title="">Home</a></li>
 
-        <h2 class="header__nav-heading h6">Navigate to</h2>
+                        <li><a href="../adminnewbookings.php">New Booking</a></li>
+                        <li><a href="../adminbookinglog.php" title="">Booking Log</a></li>
+                        <li class="has-children">
+                            <a href="#0" title="">Adding</a>
+                            <ul class="sub-menu">
+                                <li><a href="../departmentAdding.php"">Department</a></li>
+                                <li><a href="../courseAdding.php">Course</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../adminprofile.php" title="">Profile</a></li>
+                        <li><a href="../controller/logout.php" title="">Log Out</a></li>
+                    </ul>
 
-        <ul class="header__nav">
-            <li class="current"><a href="../home.html" title="">Home</a></li>
-            <li class="has-children">
-                <a href="#0" title="">Bookings</a>
-                <ul class="sub-menu">
-                    <li><a href="../facultynewbookings.php">New Booking</a></li>
-                    <li><a href="../facultyCancelBookings.php">Cancel Booking</a></li>
-                </ul>
-            </li>
-            <li><a href="../bookinglog.html" title="">Booking Log</a></li>
-            <li><a href="../profile.html" title="">Profile</a></li>
-            <li><a href="../controller/logout.php" title="">Log Out</a></li>
-        </ul>
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
 
-        <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+                </nav>
+            <?php}
+            else{?>
+                <div class="header__logo">
+                    <a class="logo" href="../facultyhome.php">
+                        <img src="../images/logo.svg" alt="Homepage">
+                    </a>
+                </div>
 
-    </nav>
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+                <nav class="header__nav-wrap">
 
+                    <h2 class="header__nav-heading h6">Navigate to</h2>
+
+                    <ul class="header__nav">
+                        <li class="current"><a href="../facultyhome.php" title="">Home</a></li>
+                        <li class="has-children">
+                            <a href="#0" title="">Bookings</a>
+                            <ul class="sub-menu">
+                                <li><a href="../facultynewbookings.php">New Booking</a></li>
+                                <li><a href="../facultyCancelBookings.php">Cancel Booking</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../facultybookinglog.php" title="">Booking Log</a></li>
+                        <li><a href="../facultyprofile.php" title="">Profile</a></li>
+                        <li><a href="../controller/logout.php" title="">Log Out</a></li>
+                    </ul>
+
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+                </nav>
+            <?php }?>
 </header>
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('../images/bg-01.jpg');">
 
@@ -397,7 +429,11 @@ if(!isset($_SESSION['username']))
                         </button>
                         <hr>
                         <button class="login100-form-btn">
+                            <?php if($_SESSION['userType']==1){?>
+                            <a href="../adminnewbookings.php">Go Back!</a>
+                            <?php }else{?>
                             <a href="../facultynewbookings.php">Go Back!</a>
+                            <?php }?>
                         </button>
                         <br><br>
                     </div>

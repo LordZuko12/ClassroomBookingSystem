@@ -16,7 +16,7 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <?php include ("controller/fetchList.php");?>
 </head>
 
 <body id="top">
@@ -66,8 +66,6 @@ if(!isset($_SESSION['username']))
 
 </header>
 
-
-
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
 
 
@@ -92,23 +90,37 @@ if(!isset($_SESSION['username']))
     </div>
     <br>
     <div class="login104-form ">
-
-        <form class="login100-form validate-form p-b-33 p-t-5">
-            <div >
-                <input class="input100" type="text" name="id" placeholder="User ID">
-            </div>
-
-            <div >
-                <input class="input100" type="text" name="coursename" placeholder="Course Name">
-            </div>
-            <div >
-                <input class="input100" type="text" name="coursetime" placeholder="Course Time">
-            </div>
-            <div >
-                <input class="input100" type="text" name="Roomnumber" placeholder="Room Number">
-            </div>
-
-        </form>
+        <table class="login100-form validate-form p-b-33 p-t-5">
+            <?php
+            $bookList = getAllBookingDetails();
+            foreach ($bookList as $b){
+                $roomName = getClassRoomNum($b['classid']);
+                $courseName = getNameCourse($b['courseid']);
+                $user = getUsername($b['userid']);
+                ?>
+                <tr>
+                    <td><?php echo "Username: ".$user['username'];?></td>
+                    <td><?php echo "Course Name: ".$courseName['coursename']; ?></td>
+                    <td><?php echo "Room No: ".$roomName['roomname']; ?></td>
+                    <td><?php echo "Time: ".$b['starttime']."-".$b['endtime']; ?></td>
+                    <td><?php
+                        if($b['status']==1){
+                            ?>
+                        <form>
+                            <button class="login100-form-btn" type="submit">
+                                CONFIRMED
+                            </button>
+                        </form>
+                        <?php }else{?>
+                            <form class="login100-form-btn" action ="cancelReason.php" method="post">
+                                <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="bookId">
+                                    CANCELLED
+                                </button>
+                            </form>
+                            <td><?php include ("cancelReason.php")?></td>
+                </tr>
+            <?php }}?>
+        </table>
     </div>
 </section>
 <footer class="s-footer">

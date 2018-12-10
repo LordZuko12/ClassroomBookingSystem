@@ -254,13 +254,11 @@ function cancelBookingStatus($bookId, $reason){
 
     $sql = "UPDATE booking SET status = 0 WHERE id = '$bookId'";
     $sql2 = "UPDATE booking SET description ='$reason' WHERE id = '$bookId'";
-    //$sql3  = "UPDATE booking SET status= 0 WHERE id='".$bookId."'";
+
 
     $result = execute($sql);
     $result2 = execute($sql2);
 
-    //echo $result;
-    //echo $result2;
     if($result == 1 && $result2 == 1){
 
         return true;
@@ -280,4 +278,103 @@ function getBookingDetails($bookId){
     return $bookDetails;
 }
 
+function getAllFaculty(){
+
+    $sql = "SELECT * FROM user WHERE status = 1 AND type = 2";
+    $result = execute($sql);
+
+    $facultyList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $facultyList[$i] = $row;
+    }
+
+    return $facultyList;
+}
+
+function getAllCourse(){
+
+    $sql = "SELECT * FROM course";
+    $result = execute($sql);
+
+    $courseList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $courseList[$i] = $row;
+    }
+
+    return $courseList;
+
+}
+
+function getAllUserRequest(){
+
+    $sql = "SELECT * FROM user WHERE status = 0 AND type = 2";
+    $result = execute($sql);
+
+    $userList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $userList[$i] = $row;
+    }
+
+    return $userList;
+
+
+}
+
+function confirmUser($userId){
+
+    $sql = "UPDATE user SET status = 1 WHERE id = '$userId'";
+
+    $result = execute($sql);
+
+    if($result == 1){
+
+        return true;
+    }else{
+
+        return false;
+    }
+}
+
+function getFacultyDept($deptId){
+
+    $sql ="SELECT * FROM department WHERE id ='$deptId'";
+
+    $result = execute($sql);
+
+    $deptName = mysqli_fetch_array($result);
+    return $deptName;
+}
+
+function getALLBooking(){
+
+    $sql = "SELECT * FROM booking";
+
+    $result = execute($sql);
+
+    $bookList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $bookList[$i] = $row;
+    }
+
+    return $bookList;
+
+}
+
+function getUsersName($userId){
+    $sql ="SELECT * FROM user WHERE id ='$userId'";
+
+    $result = execute($sql);
+
+    $userName = mysqli_fetch_array($result);
+    return $userName;
+
+}
 ?>

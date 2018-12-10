@@ -58,4 +58,44 @@ function getBook($bookId){
 
     return $bookDetails;
 }
+
+function getFaculty(){
+
+    $faculty = getAllFaculty();
+
+    return $faculty;
+}
+
+function getALLCourseName(){
+
+    $course = getAllCourse();
+
+    return $course;
+}
+
+function getUserRequest(){
+
+    $user = getAllUserRequest();
+
+    return $user;
+}
+
+function getDept($deptId){
+
+    $dept = getFacultyDept($deptId);
+
+    return $dept;
+}
+
+function getAllBookingDetails(){
+
+    $bookList = getALLBooking();
+    return $bookList;
+}
+
+function getUsername($userId){
+
+    $userName = getUsersName($userId);
+    return $userName;
+}
 ?>

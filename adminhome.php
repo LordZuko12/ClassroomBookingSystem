@@ -88,7 +88,27 @@ if(!isset($_SESSION['username']))
 
     <div class="col-seven md-six tab-full popular">
         <h3>New Requests</h3>
-
+        <div class="login104-form ">
+            <table class="login100-form validate-form p-b-33 p-t-5">
+                <?php
+                $userList = getAllUserRequest();
+                foreach ($userList as $b){?>
+                        <tr>
+                            <td><?php echo $b['fullname'];?></td>
+                            <td><?php echo "Username: ".$b['username'];?></td>
+                            <td><?php echo "Email: ".$b['email']; ?></td>
+                            <td><?php echo "Phone No: ".$b['phone']; ?></td>
+                            <td>
+                                <form action="controller/confirmUserDetails.php" method="POST">
+                                    <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
+                                        CONFIRM
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php }?>
+            </table>
+        </div>
 
     </div>
 

@@ -16,7 +16,7 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <?php include ("controller/fetchList.php")?>
 </head>
 
 <body id="top">
@@ -31,7 +31,7 @@ if(!isset($_SESSION['username']))
 <header class="s-header header">
 
     <div class="header__logo">
-        <a class="logo" href="adminhome.html">
+        <a class="logo" href="adminhome.php">
             <img src="images/logo.svg" alt="Homepage">
         </a>
     </div>
@@ -44,14 +44,14 @@ if(!isset($_SESSION['username']))
         <h2 class="header__nav-heading h6">Navigate to</h2>
 
         <ul class="header__nav">
-            <li class="current"><a href="adminhome.html" title="">Home</a></li>
+            <li class="current"><a href="adminhome.php" title="">Home</a></li>
             <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminbookinglog.html" title="">Booking Log</a></li>
+            <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
-                    <li><a href="departmentAdding.html"">Department</a></li>
-                    <li><a href="courseAdding.html">Course</a></li>
+                    <li><a href="departmentAdding.php"">Department</a></li>
+                    <li><a href="courseAdding.php">Course</a></li>
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -64,27 +64,23 @@ if(!isset($_SESSION['username']))
 
 </header>
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
+    <?php
+     $userList = getFaculty();
+     foreach ($userList as $u){
+         $deptName = getDept($u['deptid']); ?>
     <div class="login100-form validate-form p-b-33 p-t-5">
-        <h4>ABOUT</h4>
-
         <p>
-            Tareq Mohammad<br>
-            American Internatonal University-Bangladesh<br>
-            CSE<cse>
-            16-31181-1
+        <h4><?php echo $u['fullname'];?></h4>
+        AMERICAN INTERNATIONAL UNIVERSITY BANGLADESH<br>
+        <?php echo "Department: ".$deptName['deptname'];?><br>
+        <?php echo "ID: ". $u['username'];?><br>
+        <?php echo "Phone: ". $u['phone'];?><br>
+        <?php echo "Email: ". $u['email'];?><br>
         </p>
-
     </div>
-    <br>
-    <div class="login100-form validate-form p-b-33 p-t-5">
-        <h4>Contact Info</h4>
+         <br>
+     <?php } ?>
 
-        <p>
-            tareq@gmail.com <br>
-            Phone: 01982667024
-        </p>
-
-    </div>
 </section>
 <footer class="s-footer">
     <div class="row">
