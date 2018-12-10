@@ -118,7 +118,8 @@ if(!isset($_SESSION['username']))
         </div>
     </div>
 </footer>
-
+<script src="_js/jquery-3.2.1.min.js"></script>
+<script src="_js/main.js"></script>
 
 
 </body>
