@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a6f29a50-578f-42ce-9212-87c16e3244ba" name="Default Changelist" comment="" />
+    <list default="true" id="a6f29a50-578f-42ce-9212-87c16e3244ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bookingSuccessful.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unsuccessfulRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/confirmBooking.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/confirmBooking.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/validRegistration.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/validRegistration.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,23 +108,62 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-679284596">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="php" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PHP" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="php" value="142" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PHP" value="142" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newbookings.php">
+        <entry file="file://$PROJECT_DIR$/controller/confirmBooking.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
+            <state relative-caret-position="164">
+              <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/confirmBooking.php">
+        <entry file="file://$PROJECT_DIR$/bookingSuccessful.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="16" />
+            <state relative-caret-position="538">
+              <caret line="59" column="7" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/unsuccessfulRequest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
             </state>
           </provider>
         </entry>
@@ -125,17 +171,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/facultyhome.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/query.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3111">
-              <caret line="183" column="198" selection-start-line="183" selection-start-column="198" selection-end-line="183" selection-end-column="198" />
+            <state relative-caret-position="391">
+              <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -144,7 +181,7 @@
         <entry file="file://$PROJECT_DIR$/controller/validRegistration.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
-              <caret line="27" column="48" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="48" />
+              <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -152,11 +189,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller/addBooking.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+            <state relative-caret-position="2578">
+              <caret line="415" selection-start-line="415" selection-end-line="415" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/query.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2737">
+              <caret line="161" column="1" selection-start-line="161" selection-start-column="1" selection-end-line="161" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -176,6 +231,9 @@
       <find>input100</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -193,7 +251,6 @@
         <option value="$PROJECT_DIR$/model/connect.php" />
         <option value="$PROJECT_DIR$/registration.html" />
         <option value="$PROJECT_DIR$/registration.php" />
-        <option value="$PROJECT_DIR$/controller/validRegistration.php" />
         <option value="$PROJECT_DIR$/js/validateRegistration.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/home.html" />
@@ -214,10 +271,13 @@
         <option value="$PROJECT_DIR$/js/selectBookingInfo.js" />
         <option value="$PROJECT_DIR$/controller/timeTable.php" />
         <option value="$PROJECT_DIR$/controller/logout.php" />
-        <option value="$PROJECT_DIR$/controller/login.php" />
-        <option value="$PROJECT_DIR$/model/query.php" />
-        <option value="$PROJECT_DIR$/controller/confirmBooking.php" />
         <option value="$PROJECT_DIR$/controller/addBooking.php" />
+        <option value="$PROJECT_DIR$/model/query.php" />
+        <option value="$PROJECT_DIR$/controller/login.php" />
+        <option value="$PROJECT_DIR$/bookingSuccessful.php" />
+        <option value="$PROJECT_DIR$/controller/confirmBooking.php" />
+        <option value="$PROJECT_DIR$/unsuccessfulRequest.php" />
+        <option value="$PROJECT_DIR$/controller/validRegistration.php" />
       </list>
     </option>
   </component>
@@ -238,33 +298,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="cbs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cbs" type="462c0819:PsiDirectoryNode" />
+              <item name="ClassroomBookingSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClassroomBookingSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cbs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cbs" type="462c0819:PsiDirectoryNode" />
+              <item name="ClassroomBookingSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClassroomBookingSystem" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cbs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cbs" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cbs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cbs" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,16 +357,19 @@
       <workItem from="1544251328844" duration="19796000" />
       <workItem from="1544336940469" duration="35090000" />
       <workItem from="1544386449569" duration="1572000" />
+      <workItem from="1544422952467" duration="217000" />
+      <workItem from="1544425060893" duration="546000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110140000" />
+    <option name="totallyTimeSpent" value="110903000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20574887" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2065053" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -337,7 +390,7 @@
       <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20574887" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2065053" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -550,52 +603,66 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/timeTable.php" />
+    <entry file="file://$PROJECT_DIR$/newbookings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2006">
+          <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/query.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3111">
-          <caret line="183" column="198" selection-start-line="183" selection-start-column="198" selection-end-line="183" selection-end-column="198" />
+        <state relative-caret-position="2737">
+          <caret line="161" column="1" selection-start-line="161" selection-start-column="1" selection-end-line="161" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="221">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bookingSuccessful.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="59" column="7" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unsuccessfulRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/validRegistration.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="27" column="48" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="48" />
+          <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/facultyhome.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="71" column="28" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newbookings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
+        <state relative-caret-position="391">
+          <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/confirmBooking.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="16" />
+        <state relative-caret-position="164">
+          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/addBooking.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        <state relative-caret-position="2578">
+          <caret line="415" selection-start-line="415" selection-end-line="415" />
           <folding>
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
           </folding>

@@ -16,10 +16,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
         $res = getUserType($username, $password);
         $type = $res['type'];
         $status = $res['status'];
-
-        //print_r($status);
-
-        //echo $status;
+        $_SESSION['userType'] = $type;
 
         if($type==1)
         {

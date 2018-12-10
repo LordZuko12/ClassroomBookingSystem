@@ -35,7 +35,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         } else {
 
             $confirm = false;
-            echo $confirm;
         }
     }
 
@@ -43,14 +42,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
          $res = getUser($username);
          $type = $res['type'];
 
-         if($type==1) {
-             header('Location:../adminhome.html');
-         }else{
-             header('Location:../facultyhome.php');
-         }
+         header('Location:../bookingSuccessful.php');
     }else{
 
-        echo "<h1>Something went wrong!!!</h1>";
+        header('Location:../unsuccessfulRequest.php');
 
     }
 

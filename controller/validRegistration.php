@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
 
     }else{
 
-        echo "<h1>Something went wrong!!!</h1>";
+        header('Location:../unsuccessfulRequest.php');
 
     }
 
