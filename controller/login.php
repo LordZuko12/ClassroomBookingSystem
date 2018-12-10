@@ -16,24 +16,28 @@ if($_SERVER['REQUEST_METHOD']=="POST")
         $res = getUserType($username, $password);
         $type = $res['type'];
         $status = $res['status'];
+        $_SESSION['userType'] = $type;
+        //print_r($status);
+
+        //echo $status;
 
         if($type==1)
         {
-            header('Location:../adminhome.html');
+            header('Location:../adminhome.php');
         }else{
 
-            if($status==1)
+            if($status)
             {
-                header('Location:../facultyhome.html');
+                header('Location:../facultyhome.php');
             }else{
-                header('Location:../approveresgitration.html');
+                header('Location:../registrationPending.html');
             }
 
         }
 
     }else{
 
-        echo "Invalid User"."<br>";
+        header('Location:../invalidUser.html');
     }
 
 }

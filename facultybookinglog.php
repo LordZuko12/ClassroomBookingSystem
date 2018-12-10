@@ -16,11 +16,8 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <?php include ("controller/fetchList.php");?>
 </head>
-<?php
-    include ("controller/fetchList.php");
-?>
 <body id="top">
 <?php
 session_start();
@@ -28,7 +25,9 @@ if(!isset($_SESSION['username']))
 {
     header("location:index.html");
 }
+
 ?>
+
 <header class="s-header header">
 
     <div class="header__logo">
@@ -66,74 +65,49 @@ if(!isset($_SESSION['username']))
 
 
 
-<section class="s-extra s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');"">
-<div class="login101-form">
-    <p>Date/Time: <span id="datetime"></span></p>
+<section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
 
-    <script >
-        var dt = new Date();
-        document.getElementById("datetime").innerHTML = dt.toLocaleString();
-    </script>
-</div>
-<br><br><br>
-<div class="row login102-form">
-    <p><h1>WELCOME TO THE CLASS BOOKING SYSTEM</h1>
-        <?php
-            $user = getUserInfo($_SESSION['username']);
+    <div class="login101-form col-block">
+        <p>SORT BY: </p>
 
-            echo "<h2>".$user['fullname']."</h2>";
-        ?>
-    </p>
-</div>
-<br><br><br>
+        <select class="input102">
+            <option value="month">Month</option>
+            <option value="week">Week</option>
+        </select>
+    </div>
+    <div class="login103-form ">
+        <p>SEARCH</p>
 
-<div class="row login100-form">
+    </div>
+    <div class="login104-form ">
+        <p><h2>Booking Log</h2></p>
+    </div>
+    <br>
+    <div class="login104-form ">
+        <form class="login100-form validate-form p-b-33 p-t-5">
+            <?php
+                $bookList = getFacultyBooking($_SESSION['username']);
 
-    <div class="col-seven md-six tab-full popular">
-        <h3>Today</h3>
+                foreach ($bookList as $b){
 
-        <?php
-            $bookList = getFacultyBooking($_SESSION['username']);
-            date_default_timezone_set('Asia/Dhaka');
-            $day = date("Y-m-d");
-
-            foreach ($bookList as $b){
-
-                if($b['date']==$day){
                     $roomName = getClassRoomNum($b['classid']);
-                    echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
-                }
-            }
+                    $courseName = getNameCourse($b['courseid']); ?>
+                    <div class=" login101-form-btn" >
+                        <p><h4>Status: <?php if($b['status']==1){
+                                echo "Confirmed.";
+                            }else{
+                                echo "Cancelled.";
+                            }?></h4></p>
 
-        ?>
-
+                    </div>
+                <input class="input100" type="text" name="id" value ="<?php echo "Username: ".$_SESSION['username']; ?> " readonly>
+                <input class="input100" type="text" name="coursename" value ="<?php echo "Course Name ".$courseName['coursename'];?>" readonly>
+                <input class="input100" type="text" name="coursetime" value = "<?php echo "Time: ".$b['starttime']."-".$b['endtime'];?>" readonly>
+                <input class="input100" type="text" name="Roomnumber" value ="<?php echo "Room No: ".$roomName['roomname']; ?>" readonly>
+                <?php }?>
+        </form>
+        <br><br>
     </div>
-
-</div>
-<br><br><br>
-<div class="row login100-form">
-
-    <div class="col-seven md-six tab-full popular">
-        <h3>Upcoming</h3>
-
-        <?php
-        $bookList = getFacultyBooking($_SESSION['username']);
-        date_default_timezone_set('Asia/Dhaka');
-        $day = date("Y-m-d");
-
-        foreach ($bookList as $b){
-
-            if($b['date']>$day){
-                $roomName = getClassRoomNum($b['classid']);
-                echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
-            }
-        }
-
-        ?>
-
-    </div>
-
-</div>
 </section>
 <footer class="s-footer">
 
@@ -154,7 +128,6 @@ if(!isset($_SESSION['username']))
         </div>
     </div>
 </footer>
-
 <script src="_js/jquery-3.2.1.min.js"></script>
 <script src="_js/main.js"></script>
 

@@ -245,6 +245,12 @@ iframe {
   background-color: #fff;
   margin: auto;
 }
+.login105-form {
+  width: 40%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+}
 .login100-form-logo {
   font-size: 60px;
   color: #333333;
@@ -328,6 +334,12 @@ iframe {
   -moz-transition: all 0.4s;
   transition: all 0.4s;
 
+}
+
+#timeSpan{
+    font-family: Ubuntu-Regular;
+    font-size: 15px;
+    color: red;
 }
 
 .input103{

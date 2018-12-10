@@ -20,17 +20,35 @@
 
 </head>
 <body>
+<?php
+session_start();
+if(!isset($_SESSION['username']))
+{
+    header("location:index.html");
+}
 
+?>
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
         <div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Please Wait For Your Login Approval.
+					Something Went Wrong!! Please Try Again.
 				</span>
             <div class="container-login100-form-btn m-t-32">
-                <button class="login100-form-btn">
-                    <a href="index.html">Go Back</a>
-                </button>
+                <?php if($_SESSION['userType']==1) {
+
+                    echo '<button class="login100-form-btn">';
+                    echo '<a href="adminhome.php">Go Back</a>';
+                    echo '</button>';
+                }else if($_SESSION['userType']==2){
+                    echo '<button class="login100-form-btn">';
+                    echo '<a href="facultyhome.php">Go Back</a>';
+                    echo '</button>';
+                }else{
+                    echo '<button class="login100-form-btn">';
+                    echo '<a href="index.html">Go Back</a>';
+                    echo '</button>';
+                }?>
             </div>
         </div>
     </div>

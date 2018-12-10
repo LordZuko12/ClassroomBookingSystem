@@ -16,15 +16,24 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <script type="text/javascript" src="js/cancelBookingValidate.js"></script>
+    <?php include ("controller/fetchList.php");?>
 </head>
 
 <body id="top">
+<?php
+session_start();
+if(!isset($_SESSION['username']))
+{
+    header("location:index.html");
+}
+
+?>
 
 <header class="s-header header">
 
     <div class="header__logo">
-            <a class="logo" href="facultyhome.php">
+        <a class="logo" href="facultyhome.php">
             <img src="images/logo.svg" alt="Homepage">
         </a>
     </div>
@@ -42,11 +51,11 @@
                 <a href="#0" title="">Bookings</a>
                 <ul class="sub-menu">
                     <li><a href="facultynewbookings.php">New Booking</a></li>
-                    <li><a href="cancelbookings.html">Cancel Booking</a></li>
+                    <li><a href="facultyCancelBookings.php">Cancel Booking</a></li>
                 </ul>
             </li>
-            <li><a href="facultybookinglog.html" title="">Booking Log</a></li>
-            <li><a href="facultyprofile.html" title="">Profile</a></li>
+            <li><a href="facultybookinglog.php" title="">Booking Log</a></li>
+            <li><a href="facultyprofile.php" title="">Profile</a></li>
             <li><a href="controller/logout.php" title="">Log Out</a></li>
         </ul>
 
@@ -56,27 +65,44 @@
 
 </header>
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
-    <div class="login100-form validate-form p-b-33 p-t-5">
-        <h4>ABOUT</h4>
 
-        <p>
-            Tareq Mohammad<br>
-            American Internatonal University-Bangladesh<br>
-            CSE<cse>
-            16-31181-1
-        </p>
 
+                <div class="login104-form">
+                    <p> <h2>Cancel Bookings</h2></p>
+
+                </div>
+                <br>
+    <div class="login104-form ">
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <?php
+                    $bookList = getFacultyBooking($_SESSION['username']);
+                    date_default_timezone_set('Asia/Dhaka');
+                    $day = date("Y-m-d");
+                    foreach ($bookList as $b){
+                    if($b['date']>=$day && $b['status']==1)
+                    {
+                    $roomName = getClassRoomNum($b['classid']);
+                    $courseName = getNameCourse($b['courseid']); ?>
+                        <tr>
+                            <td><?php echo "Username: ".$_SESSION['username'];?></td>
+                            <td><?php echo "Date: ".$b['date'];?></td>
+                            <td><?php echo "Time: ".$b['starttime']."-".$b['endtime'];?></td>
+                            <td><?php echo "Course Name ".$courseName['coursename'];?></td>
+                            <td><?php echo "Room No: ".$roomName['roomname']; ?></td>
+                            <td>
+                                <form action="cancelBookingDetails.php" method="POST">
+                                    <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="bookId">
+                                        CANCEL
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php }}?>
+                </table>
     </div>
-    <br>
-    <div class="login100-form validate-form p-b-33 p-t-5">
-        <h4>Contact Info</h4>
 
-        <p>
-            tareq@gmail.com <br>
-            Phone: 01982667024
-        </p>
 
-    </div>
+
 </section>
 <footer class="s-footer">
     <div class="row">
@@ -97,9 +123,9 @@
     </div>
 
 </footer>
-
 <script src="_js/jquery-3.2.1.min.js"></script>
 <script src="_js/main.js"></script>
+
 </body>
 
 </html>
