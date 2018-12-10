@@ -49,6 +49,21 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 $classList[$i] = $result['classid'];
 
         }
+        $classListLastIndex = count($classList);
+
+        for($i = 0; $i< $cnt ; $i ++){
+
+            $result = checkStartTime($day, $startTime[$i]);
+            if(!empty($result)){
+
+                foreach ($result as $r){
+
+                    $classList[$classListLastIndex] =$r['classid'];
+                    $classListLastIndex++;
+                }
+            }
+
+        }
 
         $test = getClassRoom(2);
 
@@ -101,9 +116,27 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             $result = checkClassRoom($day, $startTime[$i], $endTime[$i]);
 
             if(!empty($result))
-            $classList[$i] = $result['classid'];
+                $classList[$i] = $result['classid'];
 
         }
+
+
+        $classListLastIndex = count($classList);
+
+        for($i = 0; $i< $cnt ; $i ++){
+
+            $result = checkStartTime($day, $startTime[$i]);
+            if(!empty($result)){
+
+                foreach ($result as $r){
+
+                    $classList[$classListLastIndex] =$r['classid'];
+                    $classListLastIndex++;
+                }
+            }
+
+        }
+
 
         $test = getClassRoom(1);
 
@@ -159,6 +192,25 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
         }
 
+
+        $classListLastIndex = count($classList);
+
+        for($i = 0; $i< $cnt ; $i ++){
+
+            $result = checkStartTime($day, $startTime[$i]);
+
+
+            if(!empty($result)){
+
+                foreach ($result as $r){
+
+                    $classList[$classListLastIndex] =$r['classid'];
+                    $classListLastIndex++;
+                }
+            }
+
+        }
+
         $test = getClassRoom(1);
 
         $i = 0;
@@ -195,12 +247,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
     }
 
-    /*echo $course."<br>".$username."<br>".$class."<br>".$day."<br>";
-
-    for($i = 0; $i < count($availableRoom); $i++){
-
-        echo $availableRoom[$i]."<br>";
-    }*/
 
 }
 
@@ -290,26 +336,26 @@ if(!isset($_SESSION['username']))
                     <div >
                         <p style="font-size: 18px">Class Type: </p>
                         <input class="input100" type="text" name = "classType" value="<?php
-                            if($class=="lab"){
-                                echo "Lab";
-                            }else{
-                                echo "Theory";
-                            }
+                        if($class=="lab"){
+                            echo "Lab";
+                        }else{
+                            echo "Theory";
+                        }
                         ?>" readonly>
                     </div>
                     <div class="input104">
                         <p style="font-size: 18px">Class Time: </p>
-                            <?php
-                            echo "<ul>";
-                            for($i = 0; $i < count($startTime); $i++)
-                            {
-                                echo "<li>".$startTime[$i]."-".$endTime[$i]."</li>";
-                            }
-                            echo "</ul>";
+                        <?php
+                        echo "<ul>";
+                        for($i = 0; $i < count($startTime); $i++)
+                        {
+                            echo "<li>".$startTime[$i]."-".$endTime[$i]."</li>";
+                        }
+                        echo "</ul>";
 
-                            $_SESSION['startTime']=$startTime;
-                            $_SESSION['endTime']=$endTime;
-                            ?>
+                        $_SESSION['startTime']=$startTime;
+                        $_SESSION['endTime']=$endTime;
+                        ?>
 
                     </div>
                     <div >

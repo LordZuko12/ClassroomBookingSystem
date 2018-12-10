@@ -144,6 +144,23 @@ function checkClassRoom($date, $startTime, $endTime){
     return $classList;
 }
 
+function checkStartTime($date, $startTime){
+
+    $sql = "SELECT * FROM booking WHERE date ='$date' AND starttime = '$startTime' AND status ='1'";
+
+    $result = execute($sql);
+
+    $classList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $classList[$i] = $row;
+    }
+
+
+    return $classList;
+}
+
 function getClassRoom($roomType){
 
     $sql = "SELECT * FROM classroom WHERE typeid = '$roomType'";
