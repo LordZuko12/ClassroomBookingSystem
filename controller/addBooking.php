@@ -7,7 +7,7 @@ $theory1 = $theory2 = $lab = $course = $class = $username = " ";
 $startTime = $endTime = $time = array();
 $cnt = 0;
 date_default_timezone_set('Asia/Dhaka');
-$day = date("Y-m-d");
+//$day = date("Y-m-d");
 $classList = array();
 $availableRoom = array();
 if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -28,6 +28,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $course = $_POST['course'];
     $username = $_POST['id'];
     $class = $_POST['classType'];
+    $day =$_POST['date'];
 
     if($class == "lab"){
 
@@ -116,7 +117,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             $result = checkClassRoom($day, $startTime[$i], $endTime[$i]);
 
             if(!empty($result))
-                $classList[$i] = $result['classid'];
+            $classList[$i] = $result['classid'];
 
         }
 
@@ -248,6 +249,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     }
 
 
+
 }
 
 ?>
@@ -304,8 +306,8 @@ if(!isset($_SESSION['username']))
             <li class="has-children">
                 <a href="#0" title="">Bookings</a>
                 <ul class="sub-menu">
-                    <li><a href="../newbookings.php">New Booking</a></li>
-                    <li><a href="../cancelbookings.html">Cancel Booking</a></li>
+                    <li><a href="../facultynewbookings.php">New Booking</a></li>
+                    <li><a href="../facultyCancelBookings.php">Cancel Booking</a></li>
                 </ul>
             </li>
             <li><a href="../bookinglog.html" title="">Booking Log</a></li>
@@ -333,29 +335,34 @@ if(!isset($_SESSION['username']))
                         <input class="input100" type="text" name="id"
                                value="<?php echo $username;?>" readonly>
                     </div>
+                    <div>
+                        <p style="font-size: 18px">Date: </p>
+                        <input class="input100" type="text" name="date"
+                               value="<?php echo $day;?>" readonly>
+                    </div>
                     <div >
                         <p style="font-size: 18px">Class Type: </p>
                         <input class="input100" type="text" name = "classType" value="<?php
-                        if($class=="lab"){
-                            echo "Lab";
-                        }else{
-                            echo "Theory";
-                        }
+                            if($class=="lab"){
+                                echo "Lab";
+                            }else{
+                                echo "Theory";
+                            }
                         ?>" readonly>
                     </div>
                     <div class="input104">
                         <p style="font-size: 18px">Class Time: </p>
-                        <?php
-                        echo "<ul>";
-                        for($i = 0; $i < count($startTime); $i++)
-                        {
-                            echo "<li>".$startTime[$i]."-".$endTime[$i]."</li>";
-                        }
-                        echo "</ul>";
+                            <?php
+                            echo "<ul>";
+                            for($i = 0; $i < count($startTime); $i++)
+                            {
+                                echo "<li>".$startTime[$i]."-".$endTime[$i]."</li>";
+                            }
+                            echo "</ul>";
 
-                        $_SESSION['startTime']=$startTime;
-                        $_SESSION['endTime']=$endTime;
-                        ?>
+                            $_SESSION['startTime']=$startTime;
+                            $_SESSION['endTime']=$endTime;
+                            ?>
 
                     </div>
                     <div >
@@ -390,7 +397,7 @@ if(!isset($_SESSION['username']))
                         </button>
                         <hr>
                         <button class="login100-form-btn">
-                            <a href="../newbookings.php">Go Back!</a>
+                            <a href="../facultynewbookings.php">Go Back!</a>
                         </button>
                         <br><br>
                     </div>
@@ -402,14 +409,26 @@ if(!isset($_SESSION['username']))
 </section>
 <footer class="s-footer">
 
+    <div class="row">
+        <div class="col-six tab-full s-footer__about">
+
+            <h4>ABOUT CBS</h4>
+
+            <p style="color: #58905f">It is a class booking system</p>
+
+        </div>
+        <div class="col-six tab-full s-footer__subscribe ">
+
+            <h4>DEVOLOPED BY</h4>
+
+            <p ><h5 style="color: #58905f">TANJIMA NASREEN JENIA(16-31237-1)</h5></p>
+            <p><h5 style="color: #58905f">MD. TAREQ(16-31181-1)<h5> </p>
+        </div>
+    </div>
 </footer>
-<div id="dropDownSelect1"></div>
-<script src="../js/main.js"></script>
-<script src="../_js/jquery-3.2.1.min.js"></script>
-<script src="../_js/plugins.js"></script>
-<script src="../_js/main.js"></script>
 
-
+<script src="_js/jquery-3.2.1.min.js"></script>
+<script src="_js/main.js"></script>
 </body>
 
 </html>

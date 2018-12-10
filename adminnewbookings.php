@@ -19,7 +19,7 @@
     <script type="text/javascript" src="js/selectBookingInfo.js"></script>
 
     <?php
-        include('controller/fetchList.php');
+    include('controller/fetchList.php');
     ?>
 </head>
 
@@ -36,7 +36,8 @@ if(!isset($_SESSION['username']))
 <header class="s-header header">
 
     <div class="header__logo">
-        <a class="logo" href="home.html">
+        <a class="logo" href="adminhome.php">
+            <!--    <a class="logo" href="adminhome.html">-->
             <img src="images/logo.svg" alt="Homepage">
         </a>
     </div>
@@ -49,16 +50,17 @@ if(!isset($_SESSION['username']))
         <h2 class="header__nav-heading h6">Navigate to</h2>
 
         <ul class="header__nav">
-            <li class="current"><a href="home.html" title="">Home</a></li>
+            <li class="current"><a href="adminhome.php" title="">Home</a></li>
+            <li><a href="adminnewbookings.php">New Booking</a></li>
+            <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
-                <a href="#0" title="">Bookings</a>
+                <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
-                    <li><a href="newbookings.php">New Booking</a></li>
-                    <li><a href="cancelbookings.html">Cancel Booking</a></li>
+                    <li><a href="departmentAdding.php"">Department</a></li>
+                    <li><a href="courseAdding.php">Course</a></li>
                 </ul>
             </li>
-            <li><a href="bookinglog.html" title="">Booking Log</a></li>
-            <li><a href="profile.html" title="">Profile</a></li>
+            <li><a href="adminprofile.php" title="">Profile</a></li>
             <li><a href="controller/logout.php" title="">Log Out</a></li>
         </ul>
 
@@ -76,85 +78,101 @@ if(!isset($_SESSION['username']))
 					New Bookings
 					<br><br>
 				</span>
-                <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addBooking.php" onsubmit="return validateBooking()" method="post">
-                    <div>
+                <form class="login100-form validate-form p-b-33 p-t-5">
+                    <div >
                         <input class="input100" type="text" name="id"
                                value="<?php
                                $user = getUserInfo($_SESSION['username']);
-                               echo $user['username']?>" readonly>
+                               echo "Username: ".$user['username']?>" readonly>
                     </div>
-                    <div >
-                        <select id="classType" class="input102" name="classType" onchange="showTime(this)">
+                    <div>
+                        <p style="font-size: 18px">Faculty ID</p>
+                    </div>
+                    <div  >
+                        <select id="classType" class="input102" onchange="showTime(this)">
                             <option value="classType">Class Type</option>
                             <option value="lab">Lab (3 hrs)</option>
                             <option value="theory1">Theory (1.5hrs)</option>
                             <option value="theory2">Theory (2 hrs)</option>
                         </select>
-                        <span class="input103" id="classSpan"></span>
+
                     </div>
                     <div class="input104">
                         <p style="font-size: 18px">Class Time</p>
                         <div id="th1" style="display: none">
                             <p>Theory (1.5 hrs)</p>
-                            <input name="theo1[]" id = "th11" type="checkbox" value="8:00-9:30">8:00-9:30<br>
-                            <input name="theo1[]" id = "th12" type="checkbox" value="9:30-11:00">9:30-11:00<br>
-                            <input name="theo1[]" id = "th13" type="checkbox" value="11:00-12:30">11:00-12:30<br>
-                            <input name="theo1[]" id = "th14" type="checkbox" value="12:30-2:00">12:30-2:00<br>
-                            <input name="theo1[]" id = "th15" type="checkbox" value="2:00-3:30">2:00-3:30<br>
-                            <input name="theo1[]" id = "th16" type="checkbox" value="3:30-5:00">3:30-5:00<br>
+                            <input id = "" type="checkbox" value="8:00-9:30">8:00-9:30<br>
+                            <input id = "" type="checkbox" value="9:30-11:00">9:30-11:00<br>
+                            <input id = "" type="checkbox" value="11:00-12:30">11:00-12:30<br>
+                            <input id = "" type="checkbox" value="12:30-2:00">12:30-2:00<br>
+                            <input id = "" type="checkbox" value="2:00-3:30">2:00-3:30<br>
+                            <input id = "" type="checkbox" value="3:30-5:00">3:30-5:00<br>
+                            <br>
                         </div>
                         <div id="th2" style="display: none">
                             <p>Theory (2 hrs)</p>
-                            <input name="theo2[]" id = "th21" type="checkbox" value="8:00-10:00">8:00-10:00<br>
-                            <input name="theo2[]" id = "th22" type="checkbox" value="10:00-12:00">10:00-12:00<br>
-                            <input name="theo2[]" id = "th23" type="checkbox" value="12:00-2:00">12:00-2:00<br>
-                            <input name="theo2[]" id = "th24" type="checkbox" value="2:00-4:00">2:00-4:00<br>
-                            <input name="theo2[]" id = "th25" type="checkbox" value="4:00-6:00">4:00-6:00<br>
+                            <input id = "" type="checkbox" value="8:00-10:00">8:00-10:00<br>
+                            <input id = "" type="checkbox" value="10:00-12:00">10:00-12:00<br>
+                            <input id = "" type="checkbox" value="12:00-2:00">12:00-2:00<br>
+                            <input id = "" type="checkbox" value="2:00-4:00">2:00-4:00<br>
+                            <br>
                         </div>
                         <div id="lb" style="display: none">
                             <p>Lab (3 hrs)</p>
-                            <input name="lab[]" id = "lb1" type="checkbox" value="8:00-11:00">8:00-11:00<br>
-                            <input name="lab[]" id = "lb2" type="checkbox" value="11:00-2:00">11:00-2:00<br>
-                            <input name="lab[]" id = "lb3" type="checkbox" value="2:00-5:00">2:00-5:00<br>
+                            <input id = "" type="checkbox" value="8:00-11:00">8:00-11:00<br>
+                            <input id = "" type="checkbox" value="11:00-2:00">11:00-2:00<br>
+                            <input id = "" type="checkbox" value="2:00-5:00">2:00-5:00<br>
+                            <br>
                         </div>
-                        <span id="timeSpan"></span>
                     </div>
                     <div >
-                        <select id="course" name="course" class="input102">
+                        <select name="course" class="input102">
                             <option value="course">Course Name</option>
                             <?php
-                                $course = getCourse($_SESSION['username']);
-                                foreach ($course as $c){?>
-                            <option value="<?php echo $c['coursename'];?>"><?php echo $c['coursename'];?></option>
+                            $course = getCourse($_SESSION['username']);
+                            foreach ($course as $c){?>
+                                <option value="<?php echo $c['coursename'];?>"><?php echo $c['coursename'];?></option>
                             <?php }?>
                         </select>
-                        <span class="input103" id="courseSpan"></span>
                     </div>
-                    <!--<div >
+                    <div >
                         <input class="input100" type="text" name="availableroom" placeholder="Available Room">
-                        <span class="input103" id="roomSpan"></span>
-                    </div>-->
-                <div class="container-login100-form-btn m-t-32" >
-                    <button class="login100-form-btn" type="submit" value="submit">
-                        CONFIRM
-                    </button>
-                    <br><br>
-                </div>
+                    </div>
+
                 </form>
+                <br><br>
+                <div class="container-login100-form-btn m-t-32" >
+                    <button class="login100-form-btn">
+                        <a href="newbookings.php">CONFIRM<a>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
 </section>
 <footer class="s-footer">
+    <div class="row">
+        <div class="col-six tab-full s-footer__about">
 
+            <h4>ABOUT CBS</h4>
+
+            <p style="color: #58905f">It is a class booking system</p>
+
+        </div>
+        <div class="col-six tab-full s-footer__subscribe ">
+
+            <h4>DEVOLOPED BY</h4>
+
+            <p ><h5 style="color: #58905f">TANJIMA NASREEN JENIA(16-31237-1)</h5></p>
+            <p><h5 style="color: #58905f">MD. TAREQ(16-31181-1)<h5> </p>
+        </div>
+    </div>
 </footer>
-<div id="dropDownSelect1"></div>
-<script src="js/main.js"></script>
-<script src="_js/jquery-3.2.1.min.js"></script>
-<script src="_js/plugins.js"></script>
-<script src="_js/main.js"></script>
 
+
+<script src="_js/jquery-3.2.1.min.js"></script>
+<script src="_js/main.js"></script>
 
 </body>
 

@@ -17,17 +17,17 @@
 
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <?php
-    session_start();
-    if(!isset($_SESSION['username']))
-    {
-        header("location:index.html");
-    }
 
-    ?>
 </head>
 <body>
+<?php
+session_start();
+if(!isset($_SESSION['username']))
+{
+    header("location:index.html");
+}
 
+?>
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
         <div class="wrap-login100 p-t-30 p-b-50">
@@ -38,7 +38,7 @@
                 <?php if($_SESSION['userType']==1) {
 
                     echo '<button class="login100-form-btn">';
-                    echo '<a href="adminhome.html">Go Back</a>';
+                    echo '<a href="adminhome.php">Go Back</a>';
                     echo '</button>';
                 }else if($_SESSION['userType']==2){
                     echo '<button class="login100-form-btn">';

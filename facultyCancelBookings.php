@@ -16,11 +16,10 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <script type="text/javascript" src="js/cancelBookingValidate.js"></script>
+    <?php include ("controller/fetchList.php");?>
 </head>
-<?php
-    include ("controller/fetchList.php");
-?>
+
 <body id="top">
 <?php
 session_start();
@@ -28,7 +27,9 @@ if(!isset($_SESSION['username']))
 {
     header("location:index.html");
 }
+
 ?>
+
 <header class="s-header header">
 
     <div class="header__logo">
@@ -63,80 +64,47 @@ if(!isset($_SESSION['username']))
     </nav>
 
 </header>
+<section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
 
 
+                <div class="login104-form">
+                    <p> <h2>Cancel Bookings</h2></p>
 
-<section class="s-extra s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');"">
-<div class="login101-form">
-    <p>Date/Time: <span id="datetime"></span></p>
-
-    <script >
-        var dt = new Date();
-        document.getElementById("datetime").innerHTML = dt.toLocaleString();
-    </script>
-</div>
-<br><br><br>
-<div class="row login102-form">
-    <p><h1>WELCOME TO THE CLASS BOOKING SYSTEM</h1>
-        <?php
-            $user = getUserInfo($_SESSION['username']);
-
-            echo "<h2>".$user['fullname']."</h2>";
-        ?>
-    </p>
-</div>
-<br><br><br>
-
-<div class="row login100-form">
-
-    <div class="col-seven md-six tab-full popular">
-        <h3>Today</h3>
-
-        <?php
-            $bookList = getFacultyBooking($_SESSION['username']);
-            date_default_timezone_set('Asia/Dhaka');
-            $day = date("Y-m-d");
-
-            foreach ($bookList as $b){
-
-                if($b['date']==$day){
+                </div>
+                <br>
+    <div class="login104-form ">
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <?php
+                    $bookList = getFacultyBooking($_SESSION['username']);
+                    date_default_timezone_set('Asia/Dhaka');
+                    $day = date("Y-m-d");
+                    foreach ($bookList as $b){
+                    if($b['date']>=$day && $b['status']==1)
+                    {
                     $roomName = getClassRoomNum($b['classid']);
-                    echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
-                }
-            }
-
-        ?>
-
+                    $courseName = getNameCourse($b['courseid']); ?>
+                        <tr>
+                            <td><?php echo "Username: ".$_SESSION['username'];?></td>
+                            <td><?php echo "Date: ".$b['date'];?></td>
+                            <td><?php echo "Time: ".$b['starttime']."-".$b['endtime'];?></td>
+                            <td><?php echo "Course Name ".$courseName['coursename'];?></td>
+                            <td><?php echo "Room No: ".$roomName['roomname']; ?></td>
+                            <td>
+                                <form action="cancelBookingDetails.php" method="POST">
+                                    <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="bookId">
+                                        CANCEL
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php }}?>
+                </table>
     </div>
 
-</div>
-<br><br><br>
-<div class="row login100-form">
 
-    <div class="col-seven md-six tab-full popular">
-        <h3>Upcoming</h3>
 
-        <?php
-        $bookList = getFacultyBooking($_SESSION['username']);
-        date_default_timezone_set('Asia/Dhaka');
-        $day = date("Y-m-d");
-
-        foreach ($bookList as $b){
-
-            if($b['date']>$day){
-                $roomName = getClassRoomNum($b['classid']);
-                echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
-            }
-        }
-
-        ?>
-
-    </div>
-
-</div>
 </section>
 <footer class="s-footer">
-
     <div class="row">
         <div class="col-six tab-full s-footer__about">
 
@@ -153,8 +121,8 @@ if(!isset($_SESSION['username']))
             <p><h5 style="color: #58905f">MD. TAREQ(16-31181-1)<h5> </p>
         </div>
     </div>
-</footer>
 
+</footer>
 <script src="_js/jquery-3.2.1.min.js"></script>
 <script src="_js/main.js"></script>
 

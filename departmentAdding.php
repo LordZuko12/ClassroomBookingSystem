@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en"  >
 <head>
     <style >
         a{text-decoration: none;
@@ -17,14 +17,22 @@
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+
 </head>
 
 <body id="top">
+<?php
+session_start();
+if(!isset($_SESSION['username']))
+{
+    header("location:index.html");
+}
 
+?>
 <header class="s-header header">
 
     <div class="header__logo">
-        <a class="logo" href="home.html">
+        <a class="logo" href="adminhome.php">
             <img src="images/logo.svg" alt="Homepage">
         </a>
     </div>
@@ -37,16 +45,22 @@
         <h2 class="header__nav-heading h6">Navigate to</h2>
 
         <ul class="header__nav">
-            <li class="current"><a href="home.html" title="">Home</a></li>
+            <li class="current"><a href="adminhome.php" title="">Home</a></li>
+
+
+            <li><a href="adminnewbookings.php">New Booking</a></li>
+
+
+
+            <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
-                <a href="#0" title="">Bookings</a>
+                <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
-                    <li><a href="newbookings.php">New Booking</a></li>
-                    <li><a href="cancelbookings.html">Cancel Booking</a></li>
+                    <li><a href="departmentAdding.php"">Department</a></li>
+                    <li><a href="courseAdding.php">Course</a></li>
                 </ul>
             </li>
-            <li><a href="bookinglog.html" title="">Booking Log</a></li>
-            <li><a href="profile.html" title="">Profile</a></li>
+            <li><a href="adminprofile.php" title="">Profile</a></li>
             <li><a href="controller/logout.php" title="">Log Out</a></li>
         </ul>
 
@@ -54,53 +68,59 @@
 
     </nav>
 
+
+
 </header>
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
+
     <div class="limiter">
         <div class="container-login100" >
             <div class="wrap-login100 p-t-30 p-b-50">
-                <span class="login100-form-title p-b-41">
-                    Cancel Bookings
+				<span class="login100-form-title p-b-41">
+					New DEPARTMENT
                     <br><br>
-                </span>
+				</span>
                 <form class="login100-form validate-form p-b-33 p-t-5">
-                    <div >
-                        <input class="input100" type="text" name="id" placeholder="User ID">
-                    </div>
 
                     <div >
-                        <input class="input100" type="text" name="coursename" placeholder="Course Name">
+                        <input class="input100" type="text" name="department" placeholder="Department">
                     </div>
-                    <div >
-                        <input class="input100" type="text" name="coursetime" placeholder="Course Time">
-                    </div>
-                    <div >
-                        <input class="input100" type="text" name="Roomnumber" placeholder="Room Number">
-                    </div>
-                    <div >
-                        <textarea class="input102" type="text" name="reason" placeholder="Reason"></textarea>
-                    </div>
+
 
                 </form>
                 <br><br>
                 <div class="container-login100-form-btn m-t-32" >
                     <button class="login100-form-btn">
-                        <a href="cancelbookings.html">CANCEl<a>
+                        <a href="">CONFIRM<a>
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
 </section>
 <footer class="s-footer">
+    <div class="row">
+        <div class="col-six tab-full s-footer__about">
 
+            <h4>ABOUT CBS</h4>
 
+            <p style="color: #58905f">It is a class booking system</p>
+
+        </div>
+        <div class="col-six tab-full s-footer__subscribe ">
+
+            <h4>DEVOLOPED BY</h4>
+
+            <p ><h5 style="color: #58905f">TANJIMA NASREEN JENIA(16-31237-1)</h5></p>
+            <p><h5 style="color: #58905f">MD. TAREQ(16-31181-1)<h5> </p>
+        </div>
+    </div>
 </footer>
 
-<script src="_js/jquery-3.2.1.min.js"></script>
-<script src="_js/plugins.js"></script>
-<script src="_js/main.js"></script>
 
+<script src="_js/jquery-3.2.1.min.js"></script>
+<script src="_js/main.js"></script>
 </body>
 
 </html>

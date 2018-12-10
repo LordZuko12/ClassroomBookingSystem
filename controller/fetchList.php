@@ -26,4 +26,36 @@ function getCourse($username){
 
 }
 
+function getFacultyBooking($username){
+
+    $user = getUserInfo($username);
+
+    $userId = $user['id'];
+
+    $bookList = getFacultyBookingInfo($userId);
+
+    return $bookList;
+
+}
+
+function getClassRoomNum($classId){
+
+    $roomName = getClassRoomName($classId);
+
+    return $roomName;
+}
+
+function getNameCourse($courseId){
+
+    $courseName = getCourseName($courseId);
+
+    return $courseName;
+}
+
+function getBook($bookId){
+
+    $bookDetails = getBookingDetails($bookId);
+
+    return $bookDetails;
+}
 ?>

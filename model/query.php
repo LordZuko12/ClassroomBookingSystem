@@ -135,7 +135,8 @@ function getCourseList($deptId){
 
 function checkClassRoom($date, $startTime, $endTime){
 
-    $sql = "SELECT classid FROM booking WHERE date ='$date' AND starttime = '$startTime' AND endtime = '$endTime'";
+    $sql = "SELECT classid FROM booking WHERE date ='$date' AND starttime = '$startTime' AND endtime = '$endTime' AND status ='1'";
+
 
     $result = execute($sql);
 
@@ -209,6 +210,74 @@ function addNewBooking($userId, $courseId, $classId, $day, $startTime, $endTime)
         return false;
     }
 
+}
+
+function getFacultyBookingInfo($userId){
+
+    $sql = "SELECT * FROM booking WHERE userid = '$userId'";
+
+    $result = execute($sql);
+    $bookList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $bookList[$i] = $row;
+    }
+
+    return $bookList;
+
+}
+
+
+function getClassRoomName($classId){
+
+    $sql = "SELECT roomname FROM classroom WHERE id = '$classId'";
+    $result = execute($sql);
+
+    $roomName = mysqli_fetch_array($result);
+
+    return $roomName;
+
+}
+
+function getCourseName($courseId){
+
+    $sql = "SELECT coursename FROM course WHERE id = '$courseId'";
+    $result = execute($sql);
+
+    $courseName = mysqli_fetch_array($result);
+
+    return $courseName;
+}
+
+function cancelBookingStatus($bookId, $reason){
+
+    $sql = "UPDATE booking SET status = 0 WHERE id = '$bookId'";
+    $sql2 = "UPDATE booking SET description ='$reason' WHERE id = '$bookId'";
+    //$sql3  = "UPDATE booking SET status= 0 WHERE id='".$bookId."'";
+
+    $result = execute($sql);
+    $result2 = execute($sql2);
+
+    //echo $result;
+    //echo $result2;
+    if($result == 1 && $result2 == 1){
+
+        return true;
+    }else{
+
+        return false;
+    }
+}
+
+function getBookingDetails($bookId){
+
+    $sql ="SELECT * FROM booking WHERE id ='$bookId'";
+
+    $result = execute($sql);
+
+    $bookDetails = mysqli_fetch_array($result);
+    return $bookDetails;
 }
 
 ?>

@@ -17,10 +17,13 @@ if($_SERVER['REQUEST_METHOD']=="POST")
         $type = $res['type'];
         $status = $res['status'];
         $_SESSION['userType'] = $type;
+        //print_r($status);
+
+        //echo $status;
 
         if($type==1)
         {
-            header('Location:../adminhome.html');
+            header('Location:../adminhome.php');
         }else{
 
             if($status)

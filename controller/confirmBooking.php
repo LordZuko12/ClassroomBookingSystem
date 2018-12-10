@@ -5,7 +5,7 @@ require_once('../model/query.php');
 
 session_start();
 date_default_timezone_set('Asia/Dhaka');
-$day = date("Y-m-d");
+//$day = date("Y-m-d");
 $confirm = true;
 
 if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $eTime = $sTime = array();
     $eTime =$_SESSION['endTime'];
     $sTime =$_SESSION['startTime'];
-
+    $day = $_POST['date'];
     $res = getUser($username);
     $userId = $res['id'];
 
@@ -42,10 +42,14 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
          $res = getUser($username);
          $type = $res['type'];
 
-         header('Location:../bookingSuccessful.php');
+         if($type==1) {
+             header('Location:../requestSuccessful.php');
+         }else{
+             header('Location:../requestSuccessful.php');
+         }
     }else{
 
-        header('Location:../unsuccessfulRequest.php');
+        header("Location:../unsuccessfulRequest.php");
 
     }
 

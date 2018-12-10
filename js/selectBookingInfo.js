@@ -23,10 +23,12 @@ function validateBooking() {
     var validClass = true;
     var validCourse = true;
     var validTime = true;
+    var validDate =true;
     var valid = true;
 
     var isClass = document.getElementById("classType");
     var isCourse = document.getElementById("course");
+    var selectDate = document.getElementById("selectDate");
 
     var th11 = document.getElementById("th11");
     var th12 = document.getElementById("th12");
@@ -56,7 +58,16 @@ function validateBooking() {
         validClass = true;
     }
 
-    console.log("here");
+    if(selectDate.value.length===0){
+
+        document.getElementById("dateSpan").innerText = "Please Select a Date!";
+        validDate = false;
+    }else{
+
+        document.getElementById("dateSpan").innerText = "";
+        validDate = true;
+    }
+
     if(isCourse.value == "course"){
 
         document.getElementById("courseSpan").innerText = "Please Select a Course Name!";
@@ -98,7 +109,7 @@ function validateBooking() {
 
     }
 
-    if(!validTime || !validClass || !validCourse){
+    if(!validTime || !validClass || !validCourse || !validDate){
 
         valid = false;
     }else{

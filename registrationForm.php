@@ -51,7 +51,6 @@
                             <?php
                             include('controller/fetchList.php');
                             $dept = getDeptName();
-                            //var_dump($dept);
                             foreach($dept as $d) {
                                 if($d['deptname']!="admin"){?>
                                 <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
