@@ -101,7 +101,8 @@ if(!isset($_SESSION['username']))
                 $status = $b['status'];
                 if($b['date']==$day && $status == 1){
                     $roomName = getClassRoomNum($b['classid']);
-                    echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
+                   // echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
+                    echo "Room No:".$roomName['roomname']." Time: ".$b['starttime']."-".$b['endtime']."<br>";
                 }
             }
 
@@ -125,7 +126,8 @@ if(!isset($_SESSION['username']))
             $status = $b['status'];
             if($b['date']>$day && $status==1){
                 $roomName = getClassRoomNum($b['classid']);
-                echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
+                //echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
+                echo "Room No:".$roomName['roomname']." Time: ".$b['starttime']."-".$b['endtime']." on ".$b['date']."<br>";
             }
         }
 
