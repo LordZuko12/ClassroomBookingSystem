@@ -16,7 +16,7 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <script type="text/javascript" src="js/validateDept.js"></script>
 
 </head>
 
@@ -80,20 +80,21 @@ if(!isset($_SESSION['username']))
 					New DEPARTMENT
                     <br><br>
 				</span>
-                <form class="login100-form validate-form p-b-33 p-t-5">
+                <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addDept.php" onsubmit="return validateFormDept()" method="post">
 
                     <div >
-                        <input class="input100" type="text" name="department" placeholder="Department">
+                        <input id="dept" class="input100" type="text" name="department" placeholder="Department" onkeyup="checkDeptName(this.value)">
+                        <span id="deptSpan" ></span>
                     </div>
 
-
+                    <br><br>
+                    <div class="container-login100-form-btn m-t-32" >
+                        <button class="login100-form-btn" type ="submit" value="submit">
+                            CONFIRM
+                        </button>
+                    </div>
                 </form>
-                <br><br>
-                <div class="container-login100-form-btn m-t-32" >
-                    <button class="login100-form-btn">
-                        <a href="">CONFIRM<a>
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>

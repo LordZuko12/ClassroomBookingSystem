@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mdsae
- * Date: 19-Nov-18
- * Time: 07:27 AM
- */
+
 $conn= mysqli_connect('localhost','root','','cbs');
 
 ///write new query here
@@ -25,34 +20,34 @@ if ($rows> 0)
 }
 else
 {
-   
 
-$rows1=mysqli_num_rows($result2);
-if ($rows1> 0)
-{
-    while($row = mysqli_fetch_assoc($result2))
+
+    $rows1=mysqli_num_rows($result2);
+    if ($rows1> 0)
     {
-        echo "<p><a href='#' class='leftborder'><b>".$row['username']."</b></a></p>";
+        while($row = mysqli_fetch_assoc($result2))
+        {
+            echo "<p><a href='#' class='leftborder'><b>".$row['username']."</b></a></p>";
+        }
+
     }
-
-}
-else
-{
-      
-
-$rows2=mysqli_num_rows($result3);
-if ($rows2> 0)
-{
-    while($row = mysqli_fetch_assoc($result3))
+    else
     {
-        echo "<p><a href='#' class='leftborder'><b>".$row['roomname']."</b></a></p>";
-    }
 
-}
-else
-{
-    echo "No news found according to this search term";
-}
-}
+
+        $rows2=mysqli_num_rows($result3);
+        if ($rows2> 0)
+        {
+            while($row = mysqli_fetch_assoc($result3))
+            {
+                echo "<p><a href='#' class='leftborder'><b>".$row['roomname']."</b></a></p>";
+            }
+
+        }
+        else
+        {
+            echo "No news found according to this search term";
+        }
+    }
 }
 ?>

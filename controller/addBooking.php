@@ -273,7 +273,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <link rel="stylesheet" type="text/css" href="../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <script type="text/javascript" src="../js/selectBookingInfo.js"></script>
-    <
 </head>
 
 <body id="top">

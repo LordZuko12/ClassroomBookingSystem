@@ -16,7 +16,7 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-
+    <script type="text/javascript" src="js/validateCourse.js"></script>
 
 </head>
 
@@ -32,7 +32,7 @@ if(!isset($_SESSION['username']))
 <header class="s-header header">
 
     <div class="header__logo">
-        <a class="logo" href="adminhome.html">
+        <a class="logo" href="adminhome.php">
             <img src="images/logo.svg" alt="Homepage">
         </a>
     </div>
@@ -45,24 +45,24 @@ if(!isset($_SESSION['username']))
         <h2 class="header__nav-heading h6">Navigate to</h2>
 
         <ul class="header__nav">
-            <li class="current"><a href="adminhome.html" title="">Home</a></li>
+            <li class="current"><a href="adminhome.php" title="">Home</a></li>
 
 
-            <li><a href="adminnewbookings.html">New Booking</a></li>
+            <li><a href="adminnewbookings.php">New Booking</a></li>
 
 
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
-                    <li><a href="departmentAdding.html">Department</a></li>
+                    <li><a href="departmentAdding.php">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
                 </ul>
             </li>
-            <li><a href="adminbookinglog.html" title="">Booking Log</a></li>
+            <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
-                    <li><a href="departmentAdding.html"">Department</a></li>
+                    <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
                 </ul>
             </li>
@@ -86,27 +86,36 @@ if(!isset($_SESSION['username']))
                     New COURSE
                     <br><br>
                 </span>
-                <form class="login100-form validate-form p-b-33 p-t-5">
+                <form class="login100-form validate-form p-b-33 p-t-5" onsubmit="return validateFormCourse()" method="post" action="controller/addCourse.php">
+                    <p class="input100">Department</p>
+
+                    <select id="dept" name="department" class="input102">
+                        <option value="select">SELECT</option>
+                        <?php
+                        include('controller/fetchList.php');
+                        $dept = getDeptName();
+                        foreach($dept as $d) {
+                            if($d['deptname']!="admin"){?>
+                                <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
+                            <?php }}?>
+                    </select>
+
+                    <span class="input103" id="deptSpan"></span>
+
                     <div >
-                        <select class="input102">
-                            <option>DEPARMENT</option>
-                            <option value="month">CSE</option>
-                            <option value="week">EEE</option>
-                            <option value="faculty">BBA</option>
-                        </select>
-                    </div>
-                    <div >
-                        <input class="input100" type="text" name="coursename" placeholder="Course Name">
+                        <input id = "course" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
+                        <span class="input103" id="courseSpan"></span>
                     </div>
 
+                    <div class="container-login100-form-btn m-t-32" >
+                        <button class="login100-form-btn" type="submit" value="submit">
+                            CONFIRM
+                        </button>
+                    </div>
 
+                    <br><br>
                 </form>
-                <br><br>
-                <div class="container-login100-form-btn m-t-32" >
-                    <button class="login100-form-btn">
-                        <a href="">CONFIRM<a>
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>

@@ -253,7 +253,6 @@ function validateForm() {
     {
         document.getElementById("deptSpan").innerText = "Department must be selected!";
         validDept = false;
-        console.log(dept.value);
     }else{
 
         document.getElementById("deptSpan").innerText = "";

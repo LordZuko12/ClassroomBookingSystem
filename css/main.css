@@ -342,6 +342,12 @@ iframe {
     color: red;
 }
 
+#deptSpan{
+  font-family: Ubuntu-Regular;
+  font-size: 10px;
+  color: red;
+}
+
 .input103{
   font-family: Ubuntu-Regular;
   font-size: 15px;

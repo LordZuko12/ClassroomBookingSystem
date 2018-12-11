@@ -102,6 +102,7 @@ if(!isset($_SESSION['username']))
         <input type="text" name="search" placeholder="Search" onkeyup="showResult(this.value)">
         <div id="livesearch" style="border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;"></div>
 
+
     </div>
     <div class="login104-form ">
         <p><h2>Booking Log</h2></p>
