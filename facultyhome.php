@@ -98,8 +98,8 @@ if(!isset($_SESSION['username']))
             $day = date("Y-m-d");
 
             foreach ($bookList as $b){
-
-                if($b['date']==$day){
+                $status = $b['status'];
+                if($b['date']==$day && $status == 1){
                     $roomName = getClassRoomNum($b['classid']);
                     echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
                 }
@@ -122,8 +122,8 @@ if(!isset($_SESSION['username']))
         $day = date("Y-m-d");
 
         foreach ($bookList as $b){
-
-            if($b['date']>$day){
+            $status = $b['status'];
+            if($b['date']>$day && $status==1){
                 $roomName = getClassRoomNum($b['classid']);
                 echo $roomName['roomname']."==>".$b['starttime']."-".$b['endtime']."<br>";
             }

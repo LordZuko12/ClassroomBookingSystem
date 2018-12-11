@@ -31,6 +31,35 @@ function isUniqueId($id){
     }
 }
 
+function isUniqueDept($dept){
+
+    $sql = "SELECT * FROM department WHERE deptname = '$dept'";
+    $result = execute($sql);
+    $res=mysqli_fetch_array($result);
+    $count=mysqli_num_rows($result);
+
+    if($count!=0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function isUniqueCourse($course){
+
+    $sql = "SELECT * FROM course WHERE coursename = '$course'";
+    $result = execute($sql);
+    $res=mysqli_fetch_array($result);
+    $count=mysqli_num_rows($result);
+
+    if($count!=0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+
 function getDepartmentId($dept){
 
     $sql = "SELECT id FROM department WHERE deptname = '$dept'";
@@ -80,6 +109,20 @@ function getUserType($id, $password){
 function addDepartment($deptname){
 
     $sql = "INSERT INTO department(deptname) VALUES('$deptname')";
+    $result = execute($sql);
+
+    if($result==true){
+
+        return true;
+    }else{
+
+        return false;
+    }
+}
+
+function addCourse($course, $deptId){
+
+    $sql = "INSERT INTO course(coursename, deptid) VALUES('$course' , '$deptId')";
     $result = execute($sql);
 
     if($result==true){

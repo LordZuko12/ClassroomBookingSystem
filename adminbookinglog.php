@@ -5,6 +5,30 @@
         a{text-decoration: none;
         }
     </style>
+    <script>
+        function showResult(str) {
+            if (str.length==0) {
+                document.getElementById("livesearch").innerHTML="";
+                document.getElementById("livesearch").style.border="0px";
+                return;
+            }
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            } else {  // code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function() {
+                if (this.readyState==4 && this.status==200) {
+                    document.getElementById("livesearch").innerHTML=this.responseText;
+                    document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+                }
+            }
+            xmlhttp.open("GET","livesearch.php?q="+str,true);
+            xmlhttp.send();
+        }
+    </script>
+
     <meta charset="utf-8">
     <title>CBS</title>
     <meta name="description" content="">
@@ -82,8 +106,8 @@ if(!isset($_SESSION['username']))
         </select>
     </div>
     <div class="login103-form">
-        <p>SEARCH</p>
-
+        <input type="text" name="search" placeholder="Search" onkeyup="showResult(this.value)">
+        <div id="livesearch" style="border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;"></div>
     </div>
     <div class="login104-form ">
         <p><h2>Booking Log</h2></p>
@@ -117,7 +141,6 @@ if(!isset($_SESSION['username']))
                                     CANCELLED
                                 </button>
                             </form>
-                            <td><?php include ("cancelReason.php")?></td>
                 </tr>
             <?php }}?>
         </table>
