@@ -58,6 +58,8 @@ if(!isset($_SESSION['username']))
                 <ul class="sub-menu">
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
+                    <li><a href="roomAdding.php">Room</a></li>
+
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>

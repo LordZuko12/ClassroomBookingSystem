@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2018 at 07:48 AM
+-- Generation Time: Dec 12, 2018 at 11:38 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -25,6 +25,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `annex`
+--
+
+CREATE TABLE `annex` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `annex`
+--
+
+INSERT INTO `annex` (`id`, `name`) VALUES
+(1, 'annex1'),
+(2, 'annex2'),
+(3, 'annex3'),
+(4, 'annex4'),
+(5, 'annex5'),
+(6, 'annex6'),
+(7, 'annex7');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `booking`
 --
 
@@ -34,10 +58,12 @@ CREATE TABLE `booking` (
   `classid` int(11) NOT NULL,
   `courseid` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` date NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `starttime` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `endtime` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `endtime` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `cancelledby` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `addedby` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -49,16 +75,24 @@ CREATE TABLE `booking` (
 CREATE TABLE `classroom` (
   `id` int(11) NOT NULL,
   `roomname` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `typeid` int(11) NOT NULL
+  `typeid` int(11) NOT NULL,
+  `annexid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `classroom`
 --
 
-INSERT INTO `classroom` (`id`, `roomname`, `typeid`) VALUES
-(1, '3101', 1),
-(2, '3201', 2);
+INSERT INTO `classroom` (`id`, `roomname`, `typeid`, `annexid`) VALUES
+(4, '3101', 1, 3),
+(5, '3102', 1, 3),
+(6, '2101', 2, 2),
+(7, '2102', 2, 2),
+(8, '3201', 2, 3),
+(9, '3202', 2, 3),
+(10, '5101', 1, 5),
+(11, '5102', 1, 5),
+(12, '1101', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -82,7 +116,11 @@ INSERT INTO `course` (`id`, `coursename`, `deptid`) VALUES
 (3, 'Econimics', 2),
 (4, 'Data Structure', 1),
 (5, 'Accountings', 2),
-(6, 'Electronic Device', 3);
+(6, 'Electronic Device', 3),
+(7, 'Business Math', 2),
+(8, 'Design Model', 5),
+(9, 'Digital Electronics', 3),
+(10, 'Data Mining', 1);
 
 -- --------------------------------------------------------
 
@@ -103,7 +141,8 @@ INSERT INTO `department` (`id`, `deptname`) VALUES
 (1, 'CSE'),
 (2, 'BBA'),
 (3, 'EEE'),
-(4, 'admin');
+(4, 'admin'),
+(5, 'ARCHI');
 
 -- --------------------------------------------------------
 
@@ -150,15 +189,23 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `password`, `phone`, `status`, `type`, `createdat`, `deptid`) VALUES
 (5, '123-45678-1', 'Md. Tareq', 'tareq@gmail.com', '202cb962ac59075b964b07152d234b70', '01711769845', 1, 1, '2018-12-03 02:33:35', 4),
 (6, '16-31237-1', 'Tanjima Nasreen Jenia', 'tjn.jenia@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706398', 1, 2, '2018-12-03 02:34:14', 1),
-(7, '16-31183-1', 'Khalid Ibne Hasan', 'khalid@gmail.com', 'd6f0d32edb9a5eb5a251defe6830b6c6', '01711706378', 0, 2, '2018-12-03 01:09:29', 3),
-(8, '16-31209-1', 'Fariha Rowshan Huda', 'fariha@gmail.com', '80f8bf07961590b8fe7d43a3a640f141', '01711706370', 0, 2, '2018-12-03 01:13:27', 1),
-(9, '16-31201-1', 'Luffy', 'a@gmail.com', 'd6f0d32edb9a5eb5a251defe6830b6c6', '01711706390', 0, 2, '2018-12-03 02:24:51', 1),
+(7, '16-31183-1', 'Khalid Ibne Hasan', 'khalid@gmail.com', 'd6f0d32edb9a5eb5a251defe6830b6c6', '01711706378', 1, 2, '2018-12-10 23:57:32', 3),
+(8, '16-31209-1', 'Fariha Rowshan Huda', 'fariha@gmail.com', '80f8bf07961590b8fe7d43a3a640f141', '01711706370', 1, 2, '2018-12-11 08:02:47', 1),
+(9, '16-31201-1', 'Luffy', 'a@gmail.com', 'd6f0d32edb9a5eb5a251defe6830b6c6', '01711706390', 1, 2, '2018-12-12 13:30:24', 1),
 (10, '16-31181-1', 'Tareq', 'tareq@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '+8801898266702', 0, 2, '2018-12-03 08:32:50', 1),
-(11, '16-31238-1', 'Jenia', 'jenia@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706398', 0, 2, '2018-12-03 09:40:41', 3);
+(11, '16-31238-1', 'Jenia', 'jenia@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706398', 0, 2, '2018-12-03 09:40:41', 3),
+(33, '15-28792-1', 'Md. Samshad Rahman', 'samshad@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706397', 0, 2, '2018-12-08 14:30:23', 1),
+(35, '16-31235-1', 'Mr. X', 'x@thml.com', '62b96f8b163fea06d09cdbdecd46735f', '01711706345', 0, 2, '2018-12-11 12:41:35', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `annex`
+--
+ALTER TABLE `annex`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `booking`
@@ -174,7 +221,8 @@ ALTER TABLE `booking`
 --
 ALTER TABLE `classroom`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `typeid` (`typeid`);
+  ADD KEY `typeid` (`typeid`),
+  ADD KEY `annexid` (`annexid`);
 
 --
 -- Indexes for table `course`
@@ -208,28 +256,34 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `annex`
+--
+ALTER TABLE `annex`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roomtype`
@@ -241,7 +295,7 @@ ALTER TABLE `roomtype`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables
@@ -259,7 +313,8 @@ ALTER TABLE `booking`
 -- Constraints for table `classroom`
 --
 ALTER TABLE `classroom`
-  ADD CONSTRAINT `classroom_ibfk_1` FOREIGN KEY (`typeid`) REFERENCES `roomtype` (`id`);
+  ADD CONSTRAINT `classroom_ibfk_1` FOREIGN KEY (`typeid`) REFERENCES `roomtype` (`id`),
+  ADD CONSTRAINT `classroom_ibfk_2` FOREIGN KEY (`annexid`) REFERENCES `annex` (`id`);
 
 --
 -- Constraints for table `course`

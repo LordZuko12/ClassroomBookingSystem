@@ -77,6 +77,7 @@ if(!isset($_SESSION['username']))
                 <ul class="sub-menu">
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
+                    <li><a href="roomAdding.php">Room</a></li>
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -115,6 +116,13 @@ if(!isset($_SESSION['username']))
     <br>
     <div class="login104-form ">
         <table class="login100-form validate-form p-b-33 p-t-5">
+            <tr>
+                <th>User ID</th>
+                <th>Course Name</th>
+                <th>Room</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
             <?php
             $bookList = getAllBookingDetails();
             foreach ($bookList as $b){
@@ -123,10 +131,10 @@ if(!isset($_SESSION['username']))
                 $user = getUsername($b['userid']);
                 ?>
                 <tr>
-                    <td><?php echo "Username: ".$user['username'];?></td>
-                    <td><?php echo "Course Name: ".$courseName['coursename']; ?></td>
-                    <td><?php echo "Room No: ".$roomName['roomname']; ?></td>
-                    <td><?php echo "Time: ".$b['starttime']."-".$b['endtime']; ?></td>
+                    <td><?php echo $user['username'];?></td>
+                    <td><?php echo $courseName['coursename']; ?></td>
+                    <td><?php echo $roomName['roomname']; ?></td>
+                    <td><?php echo $b['starttime']."-".$b['endtime']; ?></td>
                     <td><?php
                         if($b['status']==1){
                             ?>

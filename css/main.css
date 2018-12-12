@@ -344,7 +344,24 @@ iframe {
 
 #deptSpan{
   font-family: Ubuntu-Regular;
-  font-size: 10px;
+  font-size: 15px;
+  color: red;
+}
+
+#locationSpan{
+  font-family: Ubuntu-Regular;
+  font-size: 15px;
+  color: red;
+}
+
+#typeSpan{
+  font-family: Ubuntu-Regular;
+  font-size: 15px;
+  color: red;
+}
+#roomSpan{
+  font-family: Ubuntu-Regular;
+  font-size: 15px;
   color: red;
 }
 

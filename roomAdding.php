@@ -16,8 +16,8 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script type="text/javascript" src="js/validateCourse.js"></script>
-    <?php include("controller/fetchList.php");?>
+    <script type="text/javascript" src="js/validateRoom.js"></script>
+    <?php include ("controller/fetchList.php"); ?>
 </head>
 
 <body id="top">
@@ -50,14 +50,6 @@ if(!isset($_SESSION['username']))
 
             <li><a href="adminnewbookings.php">New Booking</a></li>
 
-
-            <li class="has-children">
-                <a href="#0" title="">Adding</a>
-                <ul class="sub-menu">
-                    <li><a href="departmentAdding.php">Department</a></li>
-                    <li><a href="courseAdding.php">Course</a></li>
-                </ul>
-            </li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
@@ -65,6 +57,7 @@ if(!isset($_SESSION['username']))
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
                     <li><a href="roomAdding.php">Room</a></li>
+
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -75,61 +68,73 @@ if(!isset($_SESSION['username']))
 
     </nav>
 
-
-
 </header>
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
 
     <div class="limiter">
         <div class="container-login100" >
             <div class="row login102-form">
-                <h1> Course List</h1>
+                <h1> Classroom List</h1>
                 <table class="login100-form validate-form p-b-33 p-t-5">
                     <tr>
-                        <th>COURSE NAME</th>
-                        <th>DEPARTMENT</th>
+                        <th>ROOM NO</th>
+                        <th>ROOM TYPE</th>
+                        <th>LOCATION</th>
                     </tr>
                     <?php
-                    $courseList = allCourseList();
-                    foreach ($courseList as $b) {
-                        $deptname = deptIdForCourse($b['deptid']);
-                            ?>
-                            <tr>
-                                <td><?php echo $b['coursename'];?></td>
-                                <td><?php echo $deptname['deptname'];?></td>
-                            </tr>
-                        <?php }?>
+                    $roomList = getAllRoomList();
+                    foreach ($roomList as $b){
+                        $type = roomType($b['typeid']);
+                        $location = roomLocation($b['annexid']);
+                        ?>
+                        <tr>
+                            <td><?php echo $b['roomname'];?></td>
+                            <td><?php echo $type['typename'];?></td>
+                            <td><?php echo $location['name'];?></td>
+                        </tr>
+                    <?php }?>
                 </table>
             </div>
             <div class="wrap-login100 p-t-30 p-b-50">
-                <span class="login100-form-title p-b-41">
-                    New COURSE
+				<span class="login100-form-title p-b-41">
+					New ROOM
                     <br><br>
-                </span>
-                <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addCourse.php" onsubmit="return validateFormCourse()" method="post" >
-                    <p class="input100">Department</p>
-                    <select id="dept" name="department" class="input102">
+				</span>
+                <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addRoom.php" onsubmit="return validateFormRoom()" method="post">
+
+                    <p class="input100">Room Type</p>
+                    <select id="roomtype" name="roomtype" class="input102">
                         <option value="select">SELECT</option>
                         <?php
-                        $dept = getDeptName();
-                        foreach($dept as $d) {
-                            if($d['deptname']!="admin"){?>
-                                <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
-                            <?php }}?>
+                        $typeList = allRoomType();
+                        foreach($typeList as $t) {?>
+                                <option value="<?php echo $t['typename']?>"><?php echo $t['typename']?></option>
+                            <?php }?>
                     </select>
-                    <span class="input103" id="deptSpan"></span>
+                    <span id="typeSpan"></span>
+
+                    <p class="input100">Room Location</p>
+                    <select id="roomlocation" name="roomlocation" class="input102">
+                        <option value="select">SELECT</option>
+                        <?php
+                        $locationList = allRoomLocation();
+                        foreach($locationList as $l) {?>
+                            <option value="<?php echo $l['name']?>"><?php echo $l['name']?></option>
+                        <?php }?>
+                    </select>
+                    <span id="locationSpan"></span>
 
                     <div >
-                        <input id = "coursename" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
-                        <span class="input103" id="courseSpan"></span>
+                        <input id="room" class="input100" type="text" name="room" placeholder="Room" onkeyup="checkRoomName(this.value)">
+                        <span id="roomSpan"></span>
                     </div>
 
+                    <br><br>
                     <div class="container-login100-form-btn m-t-32" >
-                        <button class="login100-form-btn" type="submit" value="submit">
+                        <button class="login100-form-btn" type ="submit" value="submit">
                             CONFIRM
                         </button>
                     </div>
-
                     <br><br>
                 </form>
 
@@ -157,9 +162,9 @@ if(!isset($_SESSION['username']))
     </div>
 </footer>
 
+
 <script src="_js/jquery-3.2.1.min.js"></script>
 <script src="_js/main.js"></script>
-
 </body>
 
 </html>

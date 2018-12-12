@@ -45,6 +45,20 @@ function isUniqueDept($dept){
     }
 }
 
+function isUniqueRoom($room){
+
+    $sql = "SELECT * FROM classroom WHERE roomname = '$room'";
+    $result = execute($sql);
+    $res=mysqli_fetch_array($result);
+    $count=mysqli_num_rows($result);
+
+    if($count!=0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 function isUniqueCourse($course){
 
     $sql = "SELECT * FROM course WHERE coursename = '$course'";
@@ -145,7 +159,6 @@ function getDeptList(){
     {
         $deptList[$i] = $row;
     }
-    //$res = mysqli_fetch_array($result);
 
     return $deptList;
 }
@@ -420,4 +433,109 @@ function getUsersName($userId){
     return $userName;
 
 }
+
+function getAllRoom(){
+
+    $sql = "SELECT * FROM classroom";
+    $result = execute($sql);
+
+    $roomList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $roomList[$i] = $row;
+    }
+
+    return $roomList;
+}
+
+function getRoomType($typeId){
+
+    $sql = "SELECT * FROM roomtype WHERE id ='$typeId'";
+    $result = execute($sql);
+
+    $typeName = mysqli_fetch_array($result);
+    return $typeName;
+
+}
+
+function getRoomLocation($annexId){
+
+    $sql = "SELECT * FROM annex WHERE id ='$annexId'";
+    $result = execute($sql);
+
+    $locationName = mysqli_fetch_array($result);
+    return $locationName;
+
+}
+
+function getAllRoomType(){
+
+    $sql = "SELECT * FROM roomtype";
+    $result = execute($sql);
+
+    $typeList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $typeList[$i] = $row;
+    }
+
+    return $typeList;
+
+}
+
+function getAllRoomLocation(){
+
+    $sql = "SELECT * FROM annex";
+    $result = execute($sql);
+
+    $annexList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $annexList[$i] = $row;
+    }
+
+    return $annexList;
+
+}
+
+function getRoomTypeId($type){
+
+    $sql = "SELECT * FROM roomtype WHERE typename = '$type'";
+
+    $result = execute($sql);
+
+    $typeId = mysqli_fetch_array($result);
+    return $typeId;
+
+}
+
+function getRoomLocationId($location){
+
+    $sql = "SELECT * FROM annex WHERE name = '$location'";
+
+    $result = execute($sql);
+
+    $locationId = mysqli_fetch_array($result);
+    return $locationId;
+
+}
+
+function addingRoom($room, $typeid, $annexid){
+
+    $sql = "INSERT INTO classroom(roomname, typeid, annexid) VALUES ('$room', '$typeid', '$annexid')";
+    $result = execute($sql);
+
+    if($result==true){
+
+        return true;
+    }else{
+
+        return false;
+    }
+}
+
+
 ?>

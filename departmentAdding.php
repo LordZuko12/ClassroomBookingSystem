@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script type="text/javascript" src="js/validateDept.js"></script>
-
+    <?php include ("controller/fetchList.php");?>
 </head>
 
 <body id="top">
@@ -58,6 +58,7 @@ if(!isset($_SESSION['username']))
                 <ul class="sub-menu">
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
+                    <li><a href="roomAdding.php">Room</a></li>
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -75,6 +76,23 @@ if(!isset($_SESSION['username']))
 
     <div class="limiter">
         <div class="container-login100" >
+            <div class="row login102-form">
+                <h1> Department List</h1>
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <tr>
+                        <th>DEPARTMENT</th>
+                    </tr>
+                    <?php
+                    $deptList = getDeptName();
+                    foreach ($deptList as $b) {
+                        if($b['deptname']!="admin"){
+                        ?>
+                        <tr>
+                            <td><?php echo $b['deptname'];?></td>
+                        </tr>
+                    <?php }}?>
+                </table>
+            </div>
             <div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
 					New DEPARTMENT

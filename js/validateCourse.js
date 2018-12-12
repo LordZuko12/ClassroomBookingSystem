@@ -4,14 +4,14 @@ var validCourse = true;
 
 function checkCourseName(course) {
     var xhttp;
-    if(dept.length === 0){
+    if(course.length === 0){
         document.getElementById("courseSpan").innerHTML = "";
-        valid = false;
+        validCourse = false;
         return;
     }
-    if(!isValidName(dept)){
+    if(!isValidName(course)){
         document.getElementById("courseSpan").innerHTML = "Please Enter a Valid Name";
-        valid = false;
+        validCourse = false;
         return;
     }
     xhttp = new XMLHttpRequest();
@@ -20,14 +20,14 @@ function checkCourseName(course) {
             document.getElementById("courseSpan").innerHTML = this.responseText;
         }
     };
-    valid = true;
-    xhttp.open("GET", "controller/courseExist?dept="+course, true);
+    validCourse = true;
+    xhttp.open("GET", "controller/courseExist?course="+course, true);
     xhttp.send();
 }
 
 
 function isValidName(name){
-    if(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(name)){
+    if(/^[a-zA-Z]+(([',. -" "][0-9][a-zA-Z])?[a-zA-Z]*)*$/.test(name)){
         return true;
     }
     else{
@@ -38,14 +38,14 @@ function  validateFormCourse() {
 
     var dept = document.getElementById("dept");
     var deptSpan = document.getElementById("deptSpan");
-    var course = document.getElementById("course");
+    var course = document.getElementById("coursename");
     var courseSpan = document.getElementById("courseSpan");
 
 
-    if(dept.value =="select"){
+    if(dept.value ==="select"){
 
         validDept = false;
-        deptSpan.innerText = "Please Select a Department Name";
+        deptSpan.innerText = "Please Select a Department";
     }else{
 
         validDept = true;
