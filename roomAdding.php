@@ -49,7 +49,7 @@ if(!isset($_SESSION['username']))
 
 
             <li><a href="adminnewbookings.php">New Booking</a></li>
-
+            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>

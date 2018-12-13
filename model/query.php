@@ -253,9 +253,9 @@ function getCourseId($courseName){
     return $course;
 }
 
-function addNewBooking($userId, $courseId, $classId, $day, $startTime, $endTime){
+function addNewBooking($userId, $courseId, $classId, $day, $startTime, $endTime, $addedBy){
 
-    $sql = "INSERT INTO booking(userid, classid, courseid, status, date, description, starttime, endtime) VALUES ('$userId', '$classId', '$courseId', '1', '$day', 'Booked' ,'$startTime' ,'$endTime')";
+    $sql = "INSERT INTO booking(userid, classid, courseid, status, date, description, starttime, endtime, addedby) VALUES ('$userId', '$classId', '$courseId', '1', '$day', 'Booked' ,'$startTime' ,'$endTime','$addedBy')";
     $result = execute($sql);
 
     if($result==true){
@@ -306,16 +306,18 @@ function getCourseName($courseId){
     return $courseName;
 }
 
-function cancelBookingStatus($bookId, $reason){
+function cancelBookingStatus($bookId, $reason, $cancelledBy){
 
     $sql = "UPDATE booking SET status = 0 WHERE id = '$bookId'";
     $sql2 = "UPDATE booking SET description ='$reason' WHERE id = '$bookId'";
+    $sql3 = "UPDATE booking SET cancelledby ='$cancelledBy' WHERE id = '$bookId'";
 
 
     $result = execute($sql);
     $result2 = execute($sql2);
+    $result3 = execute($sql3);
 
-    if($result == 1 && $result2 == 1){
+    if($result == 1 && $result2 == 1 && $result3 == 1){
 
         return true;
     }else{

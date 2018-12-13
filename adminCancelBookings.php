@@ -16,7 +16,8 @@
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <?php include ("controller/fetchList.php")?>
+    <script type="text/javascript" src="js/cancelBookingValidate.js"></script>
+    <?php include ("controller/fetchList.php");?>
 </head>
 
 <body id="top">
@@ -28,6 +29,7 @@ if(!isset($_SESSION['username']))
 }
 
 ?>
+
 <header class="s-header header">
 
     <div class="header__logo">
@@ -36,8 +38,6 @@ if(!isset($_SESSION['username']))
         </a>
     </div>
 
-
-
     <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
     <nav class="header__nav-wrap">
 
@@ -45,6 +45,7 @@ if(!isset($_SESSION['username']))
 
         <ul class="header__nav">
             <li class="current"><a href="adminhome.php" title="">Home</a></li>
+
             <li><a href="adminnewbookings.php">New Booking</a></li>
             <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
@@ -66,22 +67,48 @@ if(!isset($_SESSION['username']))
 
 </header>
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
-    <?php
-     $userList = getFaculty();
-     foreach ($userList as $u){
-         $deptName = getDept($u['deptid']); ?>
-    <div class="login100-form validate-form p-b-33 p-t-5">
-        <p>
-        <h4><?php echo $u['fullname'];?></h4>
-        AMERICAN INTERNATIONAL UNIVERSITY BANGLADESH<br>
-        <?php echo "Department: ".$deptName['deptname'];?><br>
-        <?php echo "ID: ". $u['username'];?><br>
-        <?php echo "Phone: ". $u['phone'];?><br>
-        <?php echo "Email: ". $u['email'];?><br>
-        </p>
+
+
+    <div class="login104-form">
+        <p> <h2>Cancel Bookings</h2></p>
+
     </div>
-         <br>
-     <?php } ?>
+    <br>
+    <div class="login104-form ">
+        <table class="login100-form validate-form p-b-33 p-t-5">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Course Name</th>
+                <th>Room No</th>
+            </tr>
+            <?php
+            $bookList = getAllBookingDetails();
+            date_default_timezone_set('Asia/Dhaka');
+            $day = date("Y-m-d");
+            foreach ($bookList as $b){
+                if($b['date']>=$day && $b['status']==1)
+                {
+                    $roomName = getClassRoomNum($b['classid']);
+                    $courseName = getNameCourse($b['courseid']); ?>
+                    <tr>
+                        <td><?php echo $b['date'];?></td>
+                        <td><?php echo $b['starttime']."-".$b['endtime'];?></td>
+                        <td><?php echo $courseName['coursename'];?></td>
+                        <td><?php echo $roomName['roomname']; ?></td>
+                        <td>
+                            <form action="adminCancelBookingDetails.php" method="POST">
+                                <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="bookId">
+                                    CANCEL
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php }}?>
+        </table>
+    </div>
+
+
 
 </section>
 <footer class="s-footer">
@@ -103,10 +130,9 @@ if(!isset($_SESSION['username']))
     </div>
 
 </footer>
-
-
 <script src="_js/jquery-3.2.1.min.js"></script>
 <script src="_js/main.js"></script>
+
 </body>
 
 </html>

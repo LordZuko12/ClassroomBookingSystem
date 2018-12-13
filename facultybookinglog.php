@@ -109,7 +109,15 @@ if(!isset($_SESSION['username']))
     </div>
     <br>
     <div class="login104-form ">
-        <form class="login100-form validate-form p-b-33 p-t-5">
+        <table class="login100-form validate-form p-b-33 p-t-5">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Room</th>
+                <th>Course Name</th>
+                <th>Booked By</th>
+                <th>Status</th>
+            </tr>
             <?php
                 $bookList = getFacultyBooking($_SESSION['username']);
 
@@ -117,21 +125,22 @@ if(!isset($_SESSION['username']))
 
                     $roomName = getClassRoomNum($b['classid']);
                     $courseName = getNameCourse($b['courseid']); ?>
-                    <div class=" login101-form-btn" >
-                        <p><h4>Status: <?php if($b['status']==1){
+                    <tr>
+                        <td><?php echo $b['date'];?></td>
+                        <td><?php echo $b['starttime']." - ".$b['endtime'];?></td>
+                        <td><?php echo $roomName['roomname'];?></td>
+                        <td><?php echo $courseName['coursename'];?></td>
+                        <td><?php echo $b['addedby'];?></td>
+                        <td>
+                            <?php if($b['status']==1){
                                 echo "Confirmed.";
                             }else{
-                                echo "Cancelled.";
-                            }?></h4></p>
-
-                    </div>
-                <input class="input100" type="text" name="id" value ="<?php echo "Username: ".$_SESSION['username']; ?> " readonly>
-                <input class="input100" type="text" name="coursename" value ="<?php echo "Course Name ".$courseName['coursename'];?>" readonly>
-                <input class="input100" type="text" name="coursetime" value = "<?php echo "Time: ".$b['starttime']."-".$b['endtime'];?>" readonly>
-                <input class="input100" type="text" name="Roomnumber" value ="<?php echo "Room No: ".$roomName['roomname']; ?>" readonly>
+                                echo "Cancelled by ";?>
+                        </td>
+                        <td><?php echo$b['cancelledby'];}?></td>
+                    </tr>
                 <?php }?>
-        </form>
-        <br><br>
+        </table>
     </div>
 </section>
 <footer class="s-footer">
