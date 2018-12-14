@@ -539,5 +539,18 @@ function addingRoom($room, $typeid, $annexid){
     }
 }
 
+function getAllBookingDetailsPaginationModel($offset, $no_of_records_per_page){
+    $sql= "select * from booking LIMIT $offset, $no_of_records_per_page";
 
+    $result = execute($sql);
+
+    $bookList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $bookList[$i] = $row;
+    }
+
+    return $bookList;
+}
 ?>

@@ -245,6 +245,12 @@ iframe {
   background-color: #fff;
   margin: auto;
 }
+.login111-form {
+  width: 40%;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: auto;
+}
 .login105-form {
   width: 40%;
   padding: 20px;
@@ -545,6 +551,7 @@ iframe {
 .login100-form-btn:hover:before {
   opacity: 1;
 }
+
 
 
 

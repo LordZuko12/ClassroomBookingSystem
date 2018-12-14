@@ -147,4 +147,9 @@ function deptIdForCourse($dept){
 
     return $deptname;
 }
+function getAllBookingDetailsPagination($offset, $no_of_records_per_page)
+{
+    $bookingListPagination= getAllBookingDetailsPaginationModel($offset, $no_of_records_per_page);
+    return $bookingListPagination;
+}
 ?>
