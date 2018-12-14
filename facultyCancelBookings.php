@@ -74,6 +74,12 @@ if(!isset($_SESSION['username']))
                 <br>
     <div class="login104-form ">
                 <table class="login100-form validate-form p-b-33 p-t-5">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Course Name</th>
+                        <th>Room No</th>
+                    </tr>
                     <?php
                     $bookList = getFacultyBooking($_SESSION['username']);
                     date_default_timezone_set('Asia/Dhaka');
@@ -84,11 +90,10 @@ if(!isset($_SESSION['username']))
                     $roomName = getClassRoomNum($b['classid']);
                     $courseName = getNameCourse($b['courseid']); ?>
                         <tr>
-                            <td><?php echo "Username: ".$_SESSION['username'];?></td>
-                            <td><?php echo "Date: ".$b['date'];?></td>
-                            <td><?php echo "Time: ".$b['starttime']."-".$b['endtime'];?></td>
-                            <td><?php echo "Course Name ".$courseName['coursename'];?></td>
-                            <td><?php echo "Room No: ".$roomName['roomname']; ?></td>
+                            <td><?php echo $b['date'];?></td>
+                            <td><?php echo $b['starttime']."-".$b['endtime'];?></td>
+                            <td><?php echo $courseName['coursename'];?></td>
+                            <td><?php echo $roomName['roomname']; ?></td>
                             <td>
                                 <form action="cancelBookingDetails.php" method="POST">
                                     <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="bookId">

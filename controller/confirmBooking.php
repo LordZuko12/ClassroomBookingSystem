@@ -26,11 +26,12 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
     $res = getCourseId($course);
     $courseId = $res['id'];
+    $addedBy = $_SESSION['username'];
 
 
 
     for ($i =0; $i < count($sTime); $i++) {
-        if (addNewBooking($userId, $courseId, $classId, $day, $sTime[$i], $eTime[$i])) {
+        if (addNewBooking($userId, $courseId, $classId, $day, $sTime[$i], $eTime[$i], $addedBy)) {
             $confirm = true;
         } else {
 

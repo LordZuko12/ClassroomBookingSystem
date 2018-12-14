@@ -45,12 +45,14 @@ if(!isset($_SESSION['username']))
             <li class="current"><a href="adminhome.php" title="">Home</a></li>
 
             <li><a href="adminnewbookings.php">New Booking</a></li>
+            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
+                    <li><a href="roomAdding.php">Room</a></li>
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -87,17 +89,23 @@ if(!isset($_SESSION['username']))
 <div class="row login100-form">
 
     <div class="col-seven md-six tab-full popular">
-        <h3>New Requests</h3>
+        <h3>User Requests For Approval</h3>
         <div class="login104-form ">
             <table class="login100-form validate-form p-b-33 p-t-5">
+                <tr>
+                    <th>Full Name</th>
+                    <th>User ID</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
                 <?php
                 $userList = getAllUserRequest();
                 foreach ($userList as $b){?>
                         <tr>
                             <td><?php echo $b['fullname'];?></td>
-                            <td><?php echo "Username: ".$b['username'];?></td>
-                            <td><?php echo "Email: ".$b['email']; ?></td>
-                            <td><?php echo "Phone No: ".$b['phone']; ?></td>
+                            <td><?php echo $b['username'];?></td>
+                            <td><?php echo $b['email']; ?></td>
+                            <td><?php echo $b['phone']; ?></td>
                             <td>
                                 <form action="controller/confirmUserDetails.php" method="POST">
                                     <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">

@@ -1,11 +1,11 @@
-function isValidText(text){
-    if(/^[a-zA-Z]+(([',. -" "][a-zA-Z ][0-9])?[a-zA-Z]*)*$/.test(text)){
+/*function isValidText(text){
+    if(/^[a-zA-Z]+(([',. -][a-zA-Z])?[a-zA-Z]*)*$/.test(text)){
         return true;
     }
     else{
         return false;
     }
-}
+}*/
 
 
 var valid =true;
@@ -18,7 +18,7 @@ function cancelValidate() {
         valid = false;
     }else {
 
-        if(!isValidText(reason.value.toString())){
+        /*if(!isValidText(reason.value.toString())){
 
             document.getElementById("reasonSpan").innerText = "Must Be a Valid Text!";
             valid = false;
@@ -26,7 +26,10 @@ function cancelValidate() {
 
             document.getElementById("reasonSpan").innerText = " ";
             valid = true;
-        }
+        }*/
+
+        document.getElementById("reasonSpan").innerText = " ";
+        valid = true;
 
     }
 

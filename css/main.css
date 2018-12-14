@@ -245,6 +245,12 @@ iframe {
   background-color: #fff;
   margin: auto;
 }
+.login111-form {
+  width: 40%;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: auto;
+}
 .login105-form {
   width: 40%;
   padding: 20px;
@@ -344,7 +350,24 @@ iframe {
 
 #deptSpan{
   font-family: Ubuntu-Regular;
-  font-size: 10px;
+  font-size: 15px;
+  color: red;
+}
+
+#locationSpan{
+  font-family: Ubuntu-Regular;
+  font-size: 15px;
+  color: red;
+}
+
+#typeSpan{
+  font-family: Ubuntu-Regular;
+  font-size: 15px;
+  color: red;
+}
+#roomSpan{
+  font-family: Ubuntu-Regular;
+  font-size: 15px;
   color: red;
 }
 
@@ -528,6 +551,7 @@ iframe {
 .login100-form-btn:hover:before {
   opacity: 1;
 }
+
 
 
 

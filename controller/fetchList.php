@@ -98,4 +98,58 @@ function getUsername($userId){
     $userName = getUsersName($userId);
     return $userName;
 }
+
+function getAllRoomList(){
+
+    $roomList = getAllRoom();
+
+    return $roomList;
+}
+
+function roomType($typeId){
+
+    $type = getRoomType($typeId);
+    return $type;
+}
+
+function roomLocation($annexId){
+
+    $location = getRoomLocation($annexId);
+    return $location;
+}
+
+function allRoomType()
+{
+    $typeList = getAllRoomType();
+
+    return $typeList;
+}
+
+function allRoomLocation(){
+
+    $locationList = getAllRoomLocation();
+
+    return $locationList;
+
+}
+
+function allCourseList()
+{
+
+    $courseList = getAllCourse();
+
+    return $courseList;
+}
+
+function deptIdForCourse($dept){
+
+    $deptname =getFacultyDept($dept);
+
+    return $deptname;
+}
+function getAllBookingDetailsPagination($offset, $no_of_records_per_page)
+{
+    $bookingListPagination= getAllBookingDetailsPaginationModel($offset, $no_of_records_per_page);
+    return $bookingListPagination;
+}
 ?>

@@ -5,9 +5,9 @@ require('../model/query.php');
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-    $deptname = htmlentities(trim($_POST['department']));
+    $dept = htmlentities(trim($_POST['department']));
 
-    if(addDepartment($deptname)){
+    if(addDepartment($dept)){
 
         header('Location:../requestSuccessful.php');
 

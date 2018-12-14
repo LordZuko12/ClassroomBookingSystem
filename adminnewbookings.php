@@ -52,12 +52,15 @@ if(!isset($_SESSION['username']))
         <ul class="header__nav">
             <li class="current"><a href="adminhome.php" title="">Home</a></li>
             <li><a href="adminnewbookings.php">New Booking</a></li>
+            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
+                    <li><a href="roomAdding.php">Room</a></li>
+
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>

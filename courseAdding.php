@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script type="text/javascript" src="js/validateCourse.js"></script>
-
+    <?php include("controller/fetchList.php");?>
 </head>
 
 <body id="top">
@@ -49,7 +49,7 @@ if(!isset($_SESSION['username']))
 
 
             <li><a href="adminnewbookings.php">New Booking</a></li>
-
+            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
 
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
@@ -64,6 +64,7 @@ if(!isset($_SESSION['username']))
                 <ul class="sub-menu">
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
+                    <li><a href="roomAdding.php">Room</a></li>
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -81,29 +82,45 @@ if(!isset($_SESSION['username']))
 
     <div class="limiter">
         <div class="container-login100" >
+            <div class="row login102-form">
+                <h1> Course List</h1>
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <tr>
+                        <th>COURSE NAME</th>
+                        <th>DEPARTMENT</th>
+                    </tr>
+                    <?php
+                    $courseList = allCourseList();
+                    foreach ($courseList as $b) {
+                        $deptname = deptIdForCourse($b['deptid']);
+                            ?>
+                            <tr>
+                                <td><?php echo $b['coursename'];?></td>
+                                <td><?php echo $deptname['deptname'];?></td>
+                            </tr>
+                        <?php }?>
+                </table>
+            </div>
             <div class="wrap-login100 p-t-30 p-b-50">
                 <span class="login100-form-title p-b-41">
                     New COURSE
                     <br><br>
                 </span>
-                <form class="login100-form validate-form p-b-33 p-t-5" onsubmit="return validateFormCourse()" method="post" action="controller/addCourse.php">
+                <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addCourse.php" onsubmit="return validateFormCourse()" method="post" >
                     <p class="input100">Department</p>
-
                     <select id="dept" name="department" class="input102">
                         <option value="select">SELECT</option>
                         <?php
-                        include('controller/fetchList.php');
                         $dept = getDeptName();
                         foreach($dept as $d) {
                             if($d['deptname']!="admin"){?>
                                 <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
                             <?php }}?>
                     </select>
-
                     <span class="input103" id="deptSpan"></span>
 
                     <div >
-                        <input id = "course" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
+                        <input id = "coursename" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
                         <span class="input103" id="courseSpan"></span>
                     </div>
 

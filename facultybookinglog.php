@@ -108,30 +108,105 @@ if(!isset($_SESSION['username']))
         <p><h2>Booking Log</h2></p>
     </div>
     <br>
-    <div class="login104-form ">
-        <form class="login100-form validate-form p-b-33 p-t-5">
+    <?php
+    $conn= mysqli_connect('localhost','root','','cbs');
+
+
+
+    if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+        $pageno = 1;
+    }
+
+    $no_of_records_per_page = 5;
+    $offset = ($pageno-1) * $no_of_records_per_page;
+
+    $total_pages_sql = "SELECT COUNT(*) FROM booking";
+    $result = mysqli_query($conn,$total_pages_sql);
+    $total_rows = mysqli_fetch_array($result)[0];
+    $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+    //$statement= getAllBookingDetailsPagination($offset, $no_of_records_per_page);
+    $statement="select * from booking LIMIT $offset, $no_of_records_per_page";
+    $res_data = mysqli_query($conn, $statement);
+
+    if (mysqli_num_rows($res_data) > 0)
+    {
+        //while($row = mysqli_fetch_assoc($res_data))
+        //{
+
+
+        echo "<div class=\"login104-form \">";
+        echo "<table class=\"login100-form validate-form p-b-33 p-t-5\">";
+        ?>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Room</th>
+            <th>Course Name</th>
+            <th>Booked By</th>
+            <th>Status</th>
+        </tr>
+        <?php
+
+
+        //$bookList = getAllBookingDetails();
+        $bookList = getAllBookingDetailsPagination($offset, $no_of_records_per_page);
+        foreach ($bookList as $b){
+            $roomName = getClassRoomNum($b['classid']);
+            $courseName = getNameCourse($b['courseid']);
+            $user = getUsername($b['userid']);
+            ?>
+            <tr>
+                <td><?php echo $b['date'];?></td>
+                <td><?php echo $b['starttime']." - ".$b['endtime'];?></td>
+                <td><?php echo $roomName['roomname'];?></td>
+                <td><?php echo $courseName['coursename'];?></td>
+                <td><?php echo $b['addedby'];?></td>
+                <td>
+                    <?php if($b['status']==1){
+                        echo "<h6 style='color:darkgreen'>"."Confirmed."."</h6>";
+                    }else{
+                    echo "<h6 style='color:#ff1627'>" ."Cancelled."."</h6>";?>
+                </td>
+                <td><?php echo$b['cancelledby'];}?></td>
+            </tr>
+
             <?php
-                $bookList = getFacultyBooking($_SESSION['username']);
 
-                foreach ($bookList as $b){
 
-                    $roomName = getClassRoomNum($b['classid']);
-                    $courseName = getNameCourse($b['courseid']); ?>
-                    <div class=" login101-form-btn" >
-                        <p><h4>Status: <?php if($b['status']==1){
-                                echo "Confirmed.";
-                            }else{
-                                echo "Cancelled.";
-                            }?></h4></p>
 
-                    </div>
-                <input class="input100" type="text" name="id" value ="<?php echo "Username: ".$_SESSION['username']; ?> " readonly>
-                <input class="input100" type="text" name="coursename" value ="<?php echo "Course Name ".$courseName['coursename'];?>" readonly>
-                <input class="input100" type="text" name="coursetime" value = "<?php echo "Time: ".$b['starttime']."-".$b['endtime'];?>" readonly>
-                <input class="input100" type="text" name="Roomnumber" value ="<?php echo "Room No: ".$roomName['roomname']; ?>" readonly>
-                <?php }?>
-        </form>
-        <br><br>
+        }
+
+        echo "</table>";
+        echo "</div>";
+
+        //}
+    }
+    else
+    {
+        echo "Nothing found in db";
+    }
+    mysqli_close($conn);
+    ?>
+    <div class="login111-form">
+        <div class="row pagination-wrap">
+            <div class="col-full">
+                <nav class="pgn">
+                    <ul class="pagination">
+                        <li ><a style="font-size: large" href="?pageno=1">First</a></li>
+                        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                            <a style="font-size: large" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+                        </li>
+                        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                            <a style="font-size: large" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+                        </li>
+                        <li><a style="font-size: large" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 </section>
 <footer class="s-footer">

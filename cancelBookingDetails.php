@@ -80,9 +80,10 @@ if(!isset($_SESSION['username']))
                             $bookDetails = getBook($bookId);
                             $courseName = getNameCourse($bookDetails['courseid']);
                             $roomName = getClassRoomNum($bookDetails['classid']);
+                            $userName = getUsername($bookDetails['userid']);
 
                     ?>
-                        <input class="input100" type="text" name="id" value ="<?php echo "Username: ".$_SESSION['username']; ?> " readonly>
+                        <input class="input100" type="text" name="id" value ="<?php echo "Faculty Username: ".$userName['username']; ?> " readonly>
                         <input class="input100" type="text" name="booking" value ="<?php echo $bookDetails['id']; ?> " readonly>
                         <input class="input100" type="text" name="date" value ="<?php echo "Date: ".$bookDetails['date']; ?> " readonly>
                         <input class="input100" type="text" name="coursename" value ="<?php echo "Course Name: ".$courseName['coursename'];?>" readonly>

@@ -1267,8 +1267,39 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 /* -------------------------------------------------------------------
  * ## pagination 
  * ------------------------------------------------------------------- */
+
+.pagination li {
+  margin: 2px; }
+.pagination li a {
+  color: #000;
+  background: #fff;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  margin: 2px; }
+.pagination li a:first-child {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px; }
+.pagination li a:hover, .pagination li a:focus {
+  background: #19a7d4;
+  color: #fff;
+  border: 1px solid #FFDD00; }
+@media screen and (max-width: 768px) {
+  .pagination li a {
+    padding: 7px 15px; } }
+.pagination li.active a {
+  border: 1px solid #FFDD00;
+  background: #FFDD00;
+  color: #000; }
+.pagination li.active a:hover, .pagination li.active a:focus {
+  background: #FFDD00;
+  color: #000;
+  border: 1px solid #FFDD00; }
 .pgn {
-  margin: 3rem auto;
+  margin: auto;
   text-align: center;
 }
 

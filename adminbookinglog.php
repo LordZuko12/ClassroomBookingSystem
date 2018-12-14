@@ -71,12 +71,14 @@ if(!isset($_SESSION['username']))
         <ul class="header__nav">
             <li class="current"><a href="adminhome.php" title="">Home</a></li>
             <li><a href="adminnewbookings.php">New Booking</a></li>
+            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
                 <ul class="sub-menu">
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
+                    <li><a href="roomAdding.php">Room</a></li>
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -113,38 +115,105 @@ if(!isset($_SESSION['username']))
         <p><h2>Booking Log</h2></p>
     </div>
     <br>
-    <div class="login104-form ">
-        <table class="login100-form validate-form p-b-33 p-t-5">
-            <?php
-            $bookList = getAllBookingDetails();
-            foreach ($bookList as $b){
-                $roomName = getClassRoomNum($b['classid']);
-                $courseName = getNameCourse($b['courseid']);
-                $user = getUsername($b['userid']);
+    <?php
+    $conn= mysqli_connect('localhost','root','','cbs');
+
+    if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+        $pageno = 1;
+    }
+
+    $no_of_records_per_page = 5;
+    $offset = ($pageno-1) * $no_of_records_per_page;
+
+    $total_pages_sql = "SELECT COUNT(*) FROM booking";
+    $result = mysqli_query($conn,$total_pages_sql);
+    $total_rows = mysqli_fetch_array($result)[0];
+    $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+    //$statement= getAllBookingDetailsPagination($offset, $no_of_records_per_page);
+    $statement="select * from booking LIMIT $offset, $no_of_records_per_page";
+    $res_data = mysqli_query($conn, $statement);
+
+    if (mysqli_num_rows($res_data) > 0)
+    {
+        //while($row = mysqli_fetch_assoc($res_data))
+        //{
+
+
+        echo "<div class=\"login104-form \">";
+        echo "<table class=\"login100-form validate-form p-b-33 p-t-5\">";
+        ?>
+        <tr>
+            <th>User ID</th>
+            <th>Course Name</th>
+            <th>Room</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+        <?php
+
+        //$bookList = getAllBookingDetails();
+        $bookList = getAllBookingDetailsPagination($offset, $no_of_records_per_page);
+        foreach ($bookList as $b){
+            $roomName = getClassRoomNum($b['classid']);
+            $courseName = getNameCourse($b['courseid']);
+            $user = getUsername($b['userid']);
+            ?>
+
+            <tr>
+            <td><?php echo $user['username'];?></td>
+            <td><?php echo $courseName['coursename']; ?></td>
+            <td><?php echo $roomName['roomname']; ?></td>
+            <td><?php echo $b['starttime']."-".$b['endtime']; ?></td>
+            <td><?php
+            if($b['status']==1){
                 ?>
-                <tr>
-                    <td><?php echo "Username: ".$user['username'];?></td>
-                    <td><?php echo "Course Name: ".$courseName['coursename']; ?></td>
-                    <td><?php echo "Room No: ".$roomName['roomname']; ?></td>
-                    <td><?php echo "Time: ".$b['starttime']."-".$b['endtime']; ?></td>
-                    <td><?php
-                        if($b['status']==1){
-                            ?>
-                        <form>
-                            <button class="login100-form-btn" type="submit">
-                                CONFIRMED
-                            </button>
-                        </form>
-                        <?php }else{?>
-                            <form class="login100-form-btn" action ="cancelReason.php" method="post">
-                                <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="bookId">
-                                    CANCELLED
-                                </button>
-                            </form>
+                <form>
+                    <button style="color: #455d25" class="login100-form-btn" type="submit">
+                        CONFIRMED
+                    </button>
+                </form>
+            <?php }else{?>
+                <form class="" action ="cancelReason.php" method="post">
+                    <button style="color: red" class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="bookId">
+                        CANCELLED
+                    </button>
+                </form>
                 </tr>
-            <?php }}?>
-        </table>
+            <?php }}
+        echo "</table>";
+        echo "</div>";
+
+        //}
+    }
+    else
+    {
+        echo "Nothing found in db";
+    }
+    mysqli_close($conn);
+    ?>
+
+    <div class="login111-form">
+        <div class="row pagination-wrap">
+            <div class="col-full">
+                <nav class="pgn">
+                    <ul class="pagination">
+                        <li ><a style="font-size: large" href="?pageno=1">First</a></li>
+                        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                            <a style="font-size: large" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+                        </li>
+                        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                            <a style="font-size: large" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+                        </li>
+                        <li><a style="font-size: large" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
+
 </section>
 <footer class="s-footer">
     <div class="row">
