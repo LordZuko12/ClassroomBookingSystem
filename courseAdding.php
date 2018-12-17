@@ -121,11 +121,11 @@ if(!isset($_SESSION['username']))
                                 <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
                             <?php }}?>
                     </select>
-                    <span class="input103" id="deptSpan"></span>
+                    <span class="stopp" id="deptSpan"></span>
 
                     <div >
                         <input id = "coursename" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
-                        <span class="input103" id="courseSpan"></span>
+                        <span class="stopp" id="courseSpan"></span>
                     </div>
 
                     <div class="container-login100-form-btn m-t-32" >

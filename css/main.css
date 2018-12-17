@@ -211,7 +211,14 @@ iframe {
 
 /*------------------------------------------------------------------
 [ Form ]*/
-
+.stop{
+  color: darkred;
+  position: absolute;
+  left: 20%;
+}
+.stopp{
+  color: darkred;
+}
 .login100-form {
   width: 100%;
   border-radius: 10px;
@@ -297,7 +304,12 @@ iframe {
   border-bottom: 1px solid #e6e6e6;
   padding: 29px 0;
 }
-
+.wrap-input110 {
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 40px 0;
+}
 .input100 {
   font-family: Ubuntu-Regular;
   font-size: 20px;
@@ -319,9 +331,20 @@ iframe {
   font-size: 15px;
   color: #555555;
   line-height: 1.5;
-
   display: block;
   width: 100%;
+  height: 60px;
+
+}
+.input122 {
+  font-family: Ubuntu-Regular;
+  font-size: 15px;
+  color: black;
+  line-height: 1.5;
+  position: relative;
+  left: 20%;
+  display: block;
+  width: 40%;
   height: 60px;
 
 }
@@ -345,36 +368,36 @@ iframe {
 #timeSpan{
     font-family: Ubuntu-Regular;
     font-size: 15px;
-    color: red;
+    color: darkred;
 }
 
 #deptSpan{
   font-family: Ubuntu-Regular;
   font-size: 15px;
-  color: red;
+  color: darkred;
 }
 
 #locationSpan{
   font-family: Ubuntu-Regular;
   font-size: 15px;
-  color: red;
+  color: darkred;
 }
 
 #typeSpan{
   font-family: Ubuntu-Regular;
   font-size: 15px;
-  color: red;
+  color: darkred;
 }
 #roomSpan{
   font-family: Ubuntu-Regular;
   font-size: 15px;
-  color: red;
+  color: darkred;
 }
 
 .input103{
   font-family: Ubuntu-Regular;
   font-size: 15px;
-  color: red;
+  color: darkred;
   padding: 80px;
 }
 

@@ -57,7 +57,7 @@
                             <?php }}?>
                         </select>
 
-						<span class="input103" id="deptSpan"></span>
+						<span class="stop" id="deptSpan"></span>
 
 					</div>
 					<div class="wrap-input100 validate-input" >
@@ -72,7 +72,7 @@
 						<span class="stop" id="phoneSpan"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input">
+					<div class="wrap-input110 validate-input">
 						<input id="password" class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 						<span class="stop" id="passSpan"></span>
@@ -80,7 +80,7 @@
 					<div class="wrap-input100 validate-input">
 						<input id="repassword" class="input100" type="password" name="repassword" placeholder="Confirm Password" onkeyup="test(this)">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
-						<span id="stop"></span>
+						<span class="stop" id="repassSpan"></span>
 					</div>
 					<div class="container-login100-form-btn m-t-32">
 						<button class="login100-form-btn" type="submit" value="Submit">
