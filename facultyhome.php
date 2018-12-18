@@ -77,11 +77,15 @@ if(!isset($_SESSION['username']))
 </div>
 <br><br><br>
 <div class="row login102-form">
-    <p><h1>WELCOME TO THE CLASS BOOKING SYSTEM</h1>
+    <p>
         <?php
-            $user = getUserInfo($_SESSION['username']);
-
-            echo "<h2>".$user['fullname']."</h2>";
+        $user = getUserInfo($_SESSION['username']);
+        $typeid = $user['type'];
+        $type = " ";
+        if($typeid == 1){
+            $type = "Admin";
+        }else $type = "Faculty";
+        echo "<h2>"."Logged in ".$user['fullname']." ( ".$type." )"."</h2>";
         ?>
     </p>
 </div>

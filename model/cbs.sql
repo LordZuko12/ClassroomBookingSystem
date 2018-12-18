@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2018 at 11:38 AM
+-- Generation Time: Dec 18, 2018 at 04:35 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -66,6 +66,21 @@ CREATE TABLE `booking` (
   `addedby` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`id`, `userid`, `classid`, `courseid`, `status`, `date`, `description`, `starttime`, `endtime`, `cancelledby`, `addedby`) VALUES
+(1, 6, 8, 1, 0, '2018-12-15', 'Busy', '8:00', '11:00', '123-45678-1', '123-45678-1'),
+(3, 6, 10, 10, 0, '2018-12-16', 'Sick', '12:30', '2:00', '16-31237-1', '16-31237-1'),
+(4, 6, 4, 10, 0, '2018-12-22', 'Unavailable', '8:00', '10:00', '16-31237-1', '123-45678-1'),
+(5, 6, 4, 10, 0, '2018-12-22', 'I have a meeting', '10:00', '12:00', '123-45678-1', '123-45678-1'),
+(6, 6, 9, 1, 1, '2018-12-20', 'Booked', '2:00', '5:00', NULL, '16-31237-1'),
+(7, 8, 11, 4, 1, '2018-12-15', 'Booked', '9:30', '11:00', NULL, '123-45678-1'),
+(8, 8, 11, 4, 1, '2018-12-15', 'Booked', '11:00', '12:30', NULL, '123-45678-1'),
+(9, 8, 11, 4, 1, '2018-12-15', 'Booked', '12:30', '2:00', NULL, '123-45678-1'),
+(10, 8, 11, 4, 1, '2018-12-15', 'Booked', '2:00', '3:30', NULL, '123-45678-1');
+
 -- --------------------------------------------------------
 
 --
@@ -92,7 +107,8 @@ INSERT INTO `classroom` (`id`, `roomname`, `typeid`, `annexid`) VALUES
 (9, '3202', 2, 3),
 (10, '5101', 1, 5),
 (11, '5102', 1, 5),
-(12, '1101', 1, 1);
+(12, '1101', 1, 1),
+(13, '3203', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -176,7 +192,7 @@ CREATE TABLE `user` (
   `email` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `password` text COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` tinyint(1) DEFAULT NULL,
   `type` int(11) NOT NULL DEFAULT '2',
   `createdat` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deptid` int(11) NOT NULL
@@ -191,11 +207,11 @@ INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `password`, `phone`, 
 (6, '16-31237-1', 'Tanjima Nasreen Jenia', 'tjn.jenia@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706398', 1, 2, '2018-12-03 02:34:14', 1),
 (7, '16-31183-1', 'Khalid Ibne Hasan', 'khalid@gmail.com', 'd6f0d32edb9a5eb5a251defe6830b6c6', '01711706378', 1, 2, '2018-12-10 23:57:32', 3),
 (8, '16-31209-1', 'Fariha Rowshan Huda', 'fariha@gmail.com', '80f8bf07961590b8fe7d43a3a640f141', '01711706370', 1, 2, '2018-12-11 08:02:47', 1),
-(9, '16-31201-1', 'Luffy', 'a@gmail.com', 'd6f0d32edb9a5eb5a251defe6830b6c6', '01711706390', 1, 2, '2018-12-12 13:30:24', 1),
-(10, '16-31181-1', 'Tareq', 'tareq@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '+8801898266702', 0, 2, '2018-12-03 08:32:50', 1),
-(11, '16-31238-1', 'Jenia', 'jenia@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706398', 0, 2, '2018-12-03 09:40:41', 3),
-(33, '15-28792-1', 'Md. Samshad Rahman', 'samshad@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706397', 0, 2, '2018-12-08 14:30:23', 1),
-(35, '16-31235-1', 'Mr. X', 'x@thml.com', '62b96f8b163fea06d09cdbdecd46735f', '01711706345', 0, 2, '2018-12-11 12:41:35', 1);
+(9, '16-31201-1', 'Luffy', 'a@gmail.com', 'd6f0d32edb9a5eb5a251defe6830b6c6', '01711706390', 0, 2, '2018-12-18 20:55:51', 1),
+(10, '16-31181-1', 'Tareq', 'tareq@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '+8801898266702', 1, 2, '2018-12-15 10:10:03', 1),
+(11, '16-31238-1', 'Jenia', 'jenia@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706398', 1, 2, '2018-12-18 20:38:12', 3),
+(33, '15-28792-1', 'Md. Samshad Rahman', 'samshad@gmail.com', 'ad946e260f74e67a48092d735c75e1c4', '01711706397', 1, 2, '2018-12-18 20:38:15', 1),
+(35, '16-31235-1', 'Mr. X', 'x@thml.com', '62b96f8b163fea06d09cdbdecd46735f', '01711706345', NULL, 2, '2018-12-18 21:01:16', 1);
 
 --
 -- Indexes for dumped tables
@@ -265,13 +281,13 @@ ALTER TABLE `annex`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `course`

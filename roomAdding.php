@@ -47,9 +47,15 @@ if(!isset($_SESSION['username']))
         <ul class="header__nav">
             <li class="current"><a href="adminhome.php" title="">Home</a></li>
 
+            <li class="has-children">
+                <a href="#0" title="">Booking</a>
+                <ul class="sub-menu">
+                    <li><a href="adminnewbookings.php">Create Booking</a></li>
+                    <li><a href="adminCancelBookings.php">View Booking</a></li>
+                </ul>
+            </li>
 
-            <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
@@ -57,7 +63,6 @@ if(!isset($_SESSION['username']))
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
                     <li><a href="roomAdding.php">Room</a></li>
-
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -73,6 +78,51 @@ if(!isset($_SESSION['username']))
 
     <div class="limiter">
         <div class="container-login100" >
+
+            <div class="wrap-login100 p-t-30 p-b-50">
+				<span class="login100-form-title p-b-41">
+					New ROOM
+                    <br><br>
+				</span>
+                <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addRoom.php" onsubmit="return validateFormRoom()" method="post">
+
+                    <p class="input100">Room Type</p>
+                    <select id="roomtype" name="roomtype" class="input102">
+                        <option value="select">SELECT</option>
+                        <?php
+                        $typeList = allRoomType();
+                        foreach($typeList as $t) {?>
+                                <option value="<?php echo $t['typename']?>"><?php echo $t['typename']?></option>
+                            <?php }?>
+                    </select>
+                    <span class="stopp" id="typeSpan"></span>
+
+                    <p class="input100">Room Location</p>
+                    <select id="roomlocation" name="roomlocation" class="input102">
+                        <option value="select">SELECT</option>
+                        <?php
+                        $locationList = allRoomLocation();
+                        foreach($locationList as $l) {?>
+                            <option value="<?php echo $l['name']?>"><?php echo $l['name']?></option>
+                        <?php }?>
+                    </select>
+                    <span class="stopp" id="locationSpan"></span>
+
+                    <div >
+                        <input id="room" class="input100" type="text" name="room" placeholder="Room" onkeyup="checkRoomName(this.value)">
+                        <span class="stopp" id="roomSpan"></span>
+                    </div>
+
+                    <br><br>
+                    <div class="container-login100-form-btn m-t-32" >
+                        <button class="login100-form-btn" type ="submit" value="submit">
+                            CONFIRM
+                        </button>
+                    </div>
+                    <br><br>
+                </form>
+
+            </div>
             <div class="row login102-form">
                 <h1> Classroom List</h1>
                 <table class="login100-form validate-form p-b-33 p-t-5">
@@ -94,50 +144,6 @@ if(!isset($_SESSION['username']))
                         </tr>
                     <?php }?>
                 </table>
-            </div>
-            <div class="wrap-login100 p-t-30 p-b-50">
-				<span class="login100-form-title p-b-41">
-					New ROOM
-                    <br><br>
-				</span>
-                <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addRoom.php" onsubmit="return validateFormRoom()" method="post">
-
-                    <p class="input100">Room Type</p>
-                    <select id="roomtype" name="roomtype" class="input102">
-                        <option value="select">SELECT</option>
-                        <?php
-                        $typeList = allRoomType();
-                        foreach($typeList as $t) {?>
-                                <option value="<?php echo $t['typename']?>"><?php echo $t['typename']?></option>
-                            <?php }?>
-                    </select>
-                    <span id="typeSpan"></span>
-
-                    <p class="input100">Room Location</p>
-                    <select id="roomlocation" name="roomlocation" class="input102">
-                        <option value="select">SELECT</option>
-                        <?php
-                        $locationList = allRoomLocation();
-                        foreach($locationList as $l) {?>
-                            <option value="<?php echo $l['name']?>"><?php echo $l['name']?></option>
-                        <?php }?>
-                    </select>
-                    <span id="locationSpan"></span>
-
-                    <div >
-                        <input id="room" class="input100" type="text" name="room" placeholder="Room" onkeyup="checkRoomName(this.value)">
-                        <span id="roomSpan"></span>
-                    </div>
-
-                    <br><br>
-                    <div class="container-login100-form-btn m-t-32" >
-                        <button class="login100-form-btn" type ="submit" value="submit">
-                            CONFIRM
-                        </button>
-                    </div>
-                    <br><br>
-                </form>
-
             </div>
         </div>
     </div>

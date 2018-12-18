@@ -54,8 +54,8 @@ if(!isset($_SESSION['username']))
                        <li class="has-children">
                 <a href="#0" title="">Booking</a>
                 <ul class="sub-menu">
-           <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+           <li><a href="adminnewbookings.php">Create Booking</a></li>
+            <li><a href="adminCancelBookings.php">View Booking</a></li>
                 </ul>
             </li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
@@ -94,20 +94,12 @@ if(!isset($_SESSION['username']))
                                echo "Username: ".$user['username']?>" readonly>
                     </div>
                     <div>
-                        <p style="font-size: 18px">Faculty ID</p>
-                        <select id="facul" name="id" class="input102">
-                            <option value="faculty">Faculty</option>
-                            <?php
-                            $faculty = getFaculty();
-                            foreach($faculty as $f) {?>
-                                    <option value="<?php echo $f['username']?>"><?php echo $f['username']?></option>
-                                <?php }?>
-                        </select>
-                        <span class="input103" id="faculSpan"></span>
+                        <input class="input100" type="text" name="id" id ="facul" placeholder="Faculty ID" onkeyup="checkUserID(this.value)">
+                        <span class="stopp" id="faculSpan"></span>
                     </div>
                     <div >
                         <input class="input102" type="date" name="date" id="selectDate">
-                        <span class="input103" id="dateSpan"></span>
+                        <span class="stopp" id="dateSpan"></span>
                     </div>
                     <div  >
                         <select id="classType" name="classType" class="input102" onchange="showTime(this)">
@@ -116,7 +108,7 @@ if(!isset($_SESSION['username']))
                             <option value="theory1">Theory (1.5hrs)</option>
                             <option value="theory2">Theory (2 hrs)</option>
                         </select>
-                        <span class="input103" id="classSpan"></span>
+                        <span class="stopp" id="classSpan"></span>
                     </div>
                     <div class="input104">
                         <p style="font-size: 18px">Class Time</p>
@@ -143,7 +135,7 @@ if(!isset($_SESSION['username']))
                             <input name="lab[]" id = "lb2" type="checkbox" value="11:00-2:00">11:00-2:00<br>
                             <input name="lab[]" id = "lb3" type="checkbox" value="2:00-5:00">2:00-5:00<br>
                         </div>
-                        <span id="timeSpan"></span>
+                        <span class="stopp" id="timeSpan"></span>
                     </div>
                     <div >
                         <select id="course" name="course" class="input102">
@@ -154,7 +146,7 @@ if(!isset($_SESSION['username']))
                                 <option value="<?php echo $c['coursename'];?>"><?php echo $c['coursename'];?></option>
                             <?php }?>
                         </select>
-                        <span class="input103" id="courseSpan"></span>
+                        <span class="stopp" id="courseSpan"></span>
                     </div>
                     <div class="container-login100-form-btn m-t-32" >
                         <button class="login100-form-btn" type="submit" value="submit">

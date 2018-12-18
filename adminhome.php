@@ -47,8 +47,8 @@ if(!isset($_SESSION['username']))
                        <li class="has-children">
                 <a href="#0" title="">Booking</a>
                 <ul class="sub-menu">
-           <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+           <li><a href="adminnewbookings.php">Create Booking</a></li>
+            <li><a href="adminCancelBookings.php">View Booking</a></li>
                 </ul>
             </li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
@@ -81,11 +81,15 @@ if(!isset($_SESSION['username']))
 </div>
 <br><br><br>
 <div class="row login102-form">
-    <p><h1>WELCOME TO THE CLASS BOOKING SYSTEM</h1>
+    <p>
     <?php
     $user = getUserInfo($_SESSION['username']);
-
-    echo "<h2>".$user['fullname']."</h2>";
+    $typeid = $user['type'];
+    $type = " ";
+    if($typeid == 1){
+        $type = "Admin";
+    }else $type = "Faculty";
+    echo "<h2>"."Logged in ".$user['fullname']." ( ".$type." )"."</h2>";
     ?>
     </p>
 </div>
@@ -97,6 +101,13 @@ if(!isset($_SESSION['username']))
         <h3>User Requests For Approval</h3>
         <div class="login104-form ">
             <table class="login100-form validate-form p-b-33 p-t-5">
+                <?php
+                    $userList = getUserRequest();
+
+                    if(empty($userList)){
+                        echo "<h4>"."No New Requests Today!!"."</h4>";
+                    }else{
+                ?>
                 <tr>
                     <th>Full Name</th>
                     <th>User ID</th>
@@ -104,7 +115,6 @@ if(!isset($_SESSION['username']))
                     <th>Phone</th>
                 </tr>
                 <?php
-                $userList = getAllUserRequest();
                 foreach ($userList as $b){?>
                         <tr>
                             <td><?php echo $b['fullname'];?></td>
@@ -118,8 +128,15 @@ if(!isset($_SESSION['username']))
                                     </button>
                                 </form>
                             </td>
+                            <td>
+                                <form action="controller/cancelUserDetails.php" method="POST">
+                                    <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
+                                        CANCEL
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
-                    <?php }?>
+                    <?php }}?>
             </table>
         </div>
 

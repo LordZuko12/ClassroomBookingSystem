@@ -50,8 +50,8 @@ if(!isset($_SESSION['username']))
                        <li class="has-children">
                 <a href="#0" title="">Booking</a>
                 <ul class="sub-menu">
-           <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+           <li><a href="adminnewbookings.php">Create Booking</a></li>
+            <li><a href="adminCancelBookings.php">View Booking</a></li>
                 </ul>
             </li>
 
@@ -80,23 +80,7 @@ if(!isset($_SESSION['username']))
 
     <div class="limiter">
         <div class="container-login100" >
-            <div class="row login102-form">
-                <h1> Department List</h1>
-                <table class="login100-form validate-form p-b-33 p-t-5">
-                    <tr>
-                        <th>DEPARTMENT</th>
-                    </tr>
-                    <?php
-                    $deptList = getDeptName();
-                    foreach ($deptList as $b) {
-                        if($b['deptname']!="admin"){
-                        ?>
-                        <tr>
-                            <td><?php echo $b['deptname'];?></td>
-                        </tr>
-                    <?php }}?>
-                </table>
-            </div>
+
             <div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
 					New DEPARTMENT
@@ -106,7 +90,7 @@ if(!isset($_SESSION['username']))
 
                     <div >
                         <input id="dept" class="input100" type="text" name="department" placeholder="Department" onkeyup="checkDeptName(this.value)">
-                        <span id="deptSpan" ></span>
+                        <span class="stopp" id="deptSpan" ></span>
                     </div>
 
                     <br><br>
@@ -117,6 +101,23 @@ if(!isset($_SESSION['username']))
                     </div>
                 </form>
 
+            </div>
+            <div class="row login102-form">
+                <h1> Department List</h1>
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <tr>
+                        <th>DEPARTMENT</th>
+                    </tr>
+                    <?php
+                    $deptList = getDeptName();
+                    foreach ($deptList as $b) {
+                        if($b['deptname']!="admin"){
+                            ?>
+                            <tr>
+                                <td><?php echo $b['deptname'];?></td>
+                            </tr>
+                        <?php }}?>
+                </table>
             </div>
         </div>
     </div>

@@ -46,7 +46,7 @@
 						<span class="focus-input100" data-placeholder="&#xe88e;"></span>
 						<p class="input100">Department</p>
 
-                        <select id="dept" name="department" class="input122">
+                        <select id="dept" name="department" class="inputstop">
                             <option value="select">SELECT</option>
                             <?php
                             include('controller/fetchList.php');
@@ -72,7 +72,7 @@
 						<span class="stop" id="phoneSpan"></span>
 					</div>
 
-					<div class="wrap-input110 validate-input">
+					<div class="wrap-input200 validate-input">
 						<input id="password" class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 						<span class="stop" id="passSpan"></span>
@@ -83,21 +83,17 @@
 						<span class="stop" id="repassSpan"></span>
 					</div>
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="submit" value="Submit">
-							SUBMIT
-						</button>
+						<input class="login100-form-btn" type="submit" value="Submit">
 					</div>
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="RESET" value="RESET">
-							RESET
-						</button>
+						<input class="login100-form-btn" type="RESET" value="RESET">
 					</div>
 					<br>
 					<hr>
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="RESET" value="RESET">
-							<a href ="index.html">Go Back</a>
-						</button>
+
+							<a class="login100-form-btn" href ="index.html">Go Back</a>
+
 					</div>
 				</form>
 			</div>

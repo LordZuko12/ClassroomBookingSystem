@@ -399,6 +399,21 @@ function confirmUser($userId){
     }
 }
 
+function cancelUser($userId){
+
+    $sql = "UPDATE user SET status = NULL WHERE id = '$userId'";
+
+    $result = execute($sql);
+
+    if($result == 1){
+
+        return true;
+    }else{
+
+        return false;
+    }
+}
+
 function getFacultyDept($deptId){
 
     $sql ="SELECT * FROM department WHERE id ='$deptId'";

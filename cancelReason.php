@@ -47,12 +47,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <div class="limiter">
     <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
         <div class="wrap-login100 p-t-30 p-b-50">
-								<span class="login100-form-title p-b-41">
+            <span class="login100-form-title p-b-41">
 					Reason of Cancel:
-				</span>
+            </span>
             <span class="login100-form-title p-b-41">
 					<?php echo $bookDetails['description'] ?>
-				</span>
+            </span>
+            <span class="login100-form-title p-b-41">
+					Cancelled By:
+            </span>
+            <span class="login100-form-title p-b-41">
+					<?php echo $bookDetails['cancelledby'] ?>
+            </span>
             <div class="container-login100-form-btn m-t-32">
                 <button class="login100-form-btn">
                     <a href="adminbookinglog.php">Go Back</a>

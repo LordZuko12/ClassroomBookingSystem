@@ -85,7 +85,7 @@ if(!isset($_SESSION['username']))
                     </div>
                     <div >
                         <input class="input102" type="date" name="date" id="selectDate">
-                        <span class="input103" id="dateSpan"></span>
+                        <span class="stopp" id="dateSpan"></span>
                     </div>
                     <div >
                         <select id="classType" class="input102" name="classType" onchange="showTime(this)">
@@ -94,7 +94,7 @@ if(!isset($_SESSION['username']))
                             <option value="theory1">Theory (1.5hrs)</option>
                             <option value="theory2">Theory (2 hrs)</option>
                         </select>
-                        <span class="input103" id="classSpan"></span>
+                        <span class="stopp" id="classSpan"></span>
                     </div>
                     <div class="input104">
                         <p style="font-size: 18px">Class Time</p>
@@ -121,7 +121,7 @@ if(!isset($_SESSION['username']))
                             <input name="lab[]" id = "lb2" type="checkbox" value="11:00-2:00">11:00-2:00<br>
                             <input name="lab[]" id = "lb3" type="checkbox" value="2:00-5:00">2:00-5:00<br>
                         </div>
-                        <span id="timeSpan"></span>
+                        <span class="stopp" id="timeSpan"></span>
                     </div>
                     <div >
                         <select id="course" name="course" class="input102">
@@ -132,7 +132,7 @@ if(!isset($_SESSION['username']))
                             <option value="<?php echo $c['coursename'];?>"><?php echo $c['coursename'];?></option>
                             <?php }?>
                         </select>
-                        <span class="input103" id="courseSpan"></span>
+                        <span class="stopp" id="courseSpan"></span>
                     </div>
                 <div class="container-login100-form-btn m-t-32" >
                     <button class="login100-form-btn" type="submit" value="submit">
