@@ -50,18 +50,12 @@ if(!isset($_SESSION['username']))
                        <li class="has-children">
                 <a href="#0" title="">Booking</a>
                 <ul class="sub-menu">
-           <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+           <li><a href="adminnewbookings.php">Create Booking</a></li>
+            <li><a href="adminCancelBookings.php">View Booking</a></li>
                 </ul>
             </li>
 
-            <li class="has-children">
-                <a href="#0" title="">Adding</a>
-                <ul class="sub-menu">
-                    <li><a href="departmentAdding.php">Department</a></li>
-                    <li><a href="courseAdding.php">Course</a></li>
-                </ul>
-            </li>
+
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
@@ -86,31 +80,17 @@ if(!isset($_SESSION['username']))
 
     <div class="limiter">
         <div class="container-login100" >
-            <div class="row login102-form">
-                <h1> Course List</h1>
-                <table class="login100-form validate-form p-b-33 p-t-5">
-                    <tr>
-                        <th>COURSE NAME</th>
-                        <th>DEPARTMENT</th>
-                    </tr>
-                    <?php
-                    $courseList = allCourseList();
-                    foreach ($courseList as $b) {
-                        $deptname = deptIdForCourse($b['deptid']);
-                            ?>
-                            <tr>
-                                <td><?php echo $b['coursename'];?></td>
-                                <td><?php echo $deptname['deptname'];?></td>
-                            </tr>
-                        <?php }?>
-                </table>
-            </div>
             <div class="wrap-login100 p-t-30 p-b-50">
                 <span class="login100-form-title p-b-41">
                     New COURSE
                     <br><br>
                 </span>
                 <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addCourse.php" onsubmit="return validateFormCourse()" method="post" >
+                    <div >
+                        <input id = "coursename" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
+                        <span class="input103" id="courseSpan"></span>
+                    </div>
+
                     <p class="input100">Department</p>
                     <select id="dept" name="department" class="input102">
                         <option value="select">SELECT</option>
@@ -123,11 +103,6 @@ if(!isset($_SESSION['username']))
                     </select>
                     <span class="input103" id="deptSpan"></span>
 
-                    <div >
-                        <input id = "coursename" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
-                        <span class="input103" id="courseSpan"></span>
-                    </div>
-
                     <div class="container-login100-form-btn m-t-32" >
                         <button class="login100-form-btn" type="submit" value="submit">
                             CONFIRM
@@ -137,6 +112,25 @@ if(!isset($_SESSION['username']))
                     <br><br>
                 </form>
 
+            </div>
+            <div class="row login102-form">
+                <h1> Course List</h1>
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <tr>
+                        <th>COURSE NAME</th>
+                        <th>DEPARTMENT</th>
+                    </tr>
+                    <?php
+                    $courseList = allCourseList();
+                    foreach ($courseList as $b) {
+                        $deptname = deptIdForCourse($b['deptid']);
+                        ?>
+                        <tr>
+                            <td><?php echo $b['coursename'];?></td>
+                            <td><?php echo $deptname['deptname'];?></td>
+                        </tr>
+                    <?php }?>
+                </table>
             </div>
         </div>
     </div>

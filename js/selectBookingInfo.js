@@ -139,14 +139,47 @@ function checkRoom() {
     return confirm;
 }
 
-function validateBookingAdmin() {
+var validClassAdmin = true;
+var validCourseAdmin = true;
+var validTimeAdmin = true;
+var validDateAdmin =true;
+var validFaculAdmin =true;
+var validAdmin = true;
 
-    var validClass = true;
-    var validCourse = true;
-    var validTime = true;
-    var validDate =true;
-    var validFacul =true;
-    var valid = true;
+function isValidUserID(id){
+    if(/^[0-1]{1}[0-9]{1}(-)[0-9]{5}(-)[1-3]{1}$/.test(id)){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function checkUserID(id){
+    var xhttp;
+    if(id.length === 0){
+        document.getElementById("faculSpan").innerHTML = "";
+        validFaculAdmin = false;
+        return;
+    }
+    if(!isValidUserID(id)){
+        document.getElementById("faculSpan").innerHTML = "Please Insert a Valid ID !";
+        validFaculAdmin = false;
+        return;
+    }
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200){
+            document.getElementById("faculSpan").style.color = "green";
+            document.getElementById("faculSpan").innerHTML = this.responseText;
+        }
+    };
+    validFaculAdmin = true;
+    xhttp.open("GET", "controller/facultyExist.php?id="+id, true);
+    xhttp.send();
+}
+
+function validateBookingAdmin() {
 
     var isClass = document.getElementById("classType");
     var isCourse = document.getElementById("course");
@@ -173,84 +206,91 @@ function validateBookingAdmin() {
     if(isClass.value == "classType"){
 
         document.getElementById("classSpan").innerText = "Please Select a Class Type!";
-        validClass = false;
+        validClassAdmin = false;
 
     }else{
 
         document.getElementById("classSpan").innerText = "";
-        validClass = true;
+        validClassAdmin = true;
     }
 
-    if(isFaculty.value == "faculty"){
+    if(isFaculty.value.length === 0){
 
-        document.getElementById("faculSpan").innerText = "Please Select a Faculty ID!";
-        validFacul = false;
+        document.getElementById("faculSpan").innerText = "Please Insert a Faculty ID!";
+        validFaculAdmin = false;
 
     }else{
 
-        document.getElementById("faculSpan").innerText = "";
-        validFacul = true;
+        if(!isValidUserID(isFaculty.value.toString()))
+        {
+            document.getElementById("faculSpan").innerText = "Please Insert a Valid Faculty ID!";
+            validFaculAdmin = false;
+        }else{
+            document.getElementById("faculSpan").innerText = "";
+            validFaculAdmin = true;
+        }
+
     }
 
     if(selectDate.value.length===0){
 
         document.getElementById("dateSpan").innerText = "Please Select a Date!";
-        validDate = false;
+        validDateAdmin = false;
     }else{
 
         document.getElementById("dateSpan").innerText = "";
-        validDate = true;
+        validDateAdmin = true;
     }
 
     if(isCourse.value == "course"){
 
         document.getElementById("courseSpan").innerText = "Please Select a Course Name!";
-        validCourse = false;
+        validCourseAdmin = false;
     }else{
 
         document.getElementById("courseSpan").innerText = "";
-        validCourse = true;
+        validCourseAdmin = true;
     }
 
     if(isClass.value =="theory1" && (!th11.checked && !th12.checked && !th13.checked && !th14.checked && !th15.checked && !th16.checked)){
 
         document.getElementById("timeSpan").innerText = "Please Select a Time!";
-        validTime = false;
+        validTimeAdmin = false;
     }else{
 
         document.getElementById("timeSpan").innerText = "";
-        validTime = true;
+        validTimeAdmin = true;
     }
 
     if(isClass.value =="theory2" && (!th21.checked && !th22.checked && !th23.checked && !th24.checked && !th25.checked)){
 
         document.getElementById("timeSpan").innerText = "Please Select a Time!";
-        validTime = false;
+        validTimeAdmin = false;
     }else{
 
         document.getElementById("timeSpan").innerText = "";
-        validTime = true;
+        validTimeAdmin = true;
     }
 
     if(isClass.value =="lab" && (!lb1.checked && !lb2.checked && !lb3.checked)){
 
         document.getElementById("timeSpan").innerText = "Please Select a Time!";
-        validTime = false;
+        validTimeAdmin = false;
     }else{
 
         document.getElementById("timeSpan").innerText = "";
-        validTime = true;
+        validTimeAdmin = true;
 
     }
 
-    if(!validTime || !validClass || !validCourse || !validDate || !validFacul){
+    if(!validTimeAdmin || !validClassAdmin || !validCourseAdmin || !validDateAdmin || !validFaculAdmin){
 
-        valid = false;
+        validAdmin = false;
     }else{
 
-        valid = true;
+        validAdmin = true;
     }
 
-    return valid;
+    return validAdmin;
 
 }

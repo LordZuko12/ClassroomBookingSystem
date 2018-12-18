@@ -47,9 +47,15 @@ if(!isset($_SESSION['username']))
         <ul class="header__nav">
             <li class="current"><a href="adminhome.php" title="">Home</a></li>
 
+            <li class="has-children">
+                <a href="#0" title="">Booking</a>
+                <ul class="sub-menu">
+                    <li><a href="adminnewbookings.php">Create Booking</a></li>
+                    <li><a href="adminCancelBookings.php">View Booking</a></li>
+                </ul>
+            </li>
 
-            <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
             <li class="has-children">
                 <a href="#0" title="">Adding</a>
@@ -57,7 +63,6 @@ if(!isset($_SESSION['username']))
                     <li><a href="departmentAdding.php"">Department</a></li>
                     <li><a href="courseAdding.php">Course</a></li>
                     <li><a href="roomAdding.php">Room</a></li>
-
                 </ul>
             </li>
             <li><a href="adminprofile.php" title="">Profile</a></li>
@@ -73,28 +78,7 @@ if(!isset($_SESSION['username']))
 
     <div class="limiter">
         <div class="container-login100" >
-            <div class="row login102-form">
-                <h1> Classroom List</h1>
-                <table class="login100-form validate-form p-b-33 p-t-5">
-                    <tr>
-                        <th>ROOM NO</th>
-                        <th>ROOM TYPE</th>
-                        <th>LOCATION</th>
-                    </tr>
-                    <?php
-                    $roomList = getAllRoomList();
-                    foreach ($roomList as $b){
-                        $type = roomType($b['typeid']);
-                        $location = roomLocation($b['annexid']);
-                        ?>
-                        <tr>
-                            <td><?php echo $b['roomname'];?></td>
-                            <td><?php echo $type['typename'];?></td>
-                            <td><?php echo $location['name'];?></td>
-                        </tr>
-                    <?php }?>
-                </table>
-            </div>
+
             <div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
 					New ROOM
@@ -138,6 +122,28 @@ if(!isset($_SESSION['username']))
                     <br><br>
                 </form>
 
+            </div>
+            <div class="row login102-form">
+                <h1> Classroom List</h1>
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <tr>
+                        <th>ROOM NO</th>
+                        <th>ROOM TYPE</th>
+                        <th>LOCATION</th>
+                    </tr>
+                    <?php
+                    $roomList = getAllRoomList();
+                    foreach ($roomList as $b){
+                        $type = roomType($b['typeid']);
+                        $location = roomLocation($b['annexid']);
+                        ?>
+                        <tr>
+                            <td><?php echo $b['roomname'];?></td>
+                            <td><?php echo $type['typename'];?></td>
+                            <td><?php echo $location['name'];?></td>
+                        </tr>
+                    <?php }?>
+                </table>
             </div>
         </div>
     </div>

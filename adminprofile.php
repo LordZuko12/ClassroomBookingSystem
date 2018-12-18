@@ -48,8 +48,8 @@ if(!isset($_SESSION['username']))
                            <li class="has-children">
                 <a href="#0" title="">Booking</a>
                 <ul class="sub-menu">
-           <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+           <li><a href="adminnewbookings.php">Create Booking</a></li>
+            <li><a href="adminCancelBookings.php">View Booking</a></li>
                 </ul>
             </li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
@@ -71,22 +71,50 @@ if(!isset($_SESSION['username']))
 
 </header>
 <section class="s-content s-content--top-padding s-content--narrow" style="background-image: url('images/bg-01.jpg');">
-    <?php
-     $userList = getFaculty();
-     foreach ($userList as $u){
-         $deptName = getDept($u['deptid']); ?>
-    <div class="login100-form validate-form p-b-33 p-t-5">
-        <p>
-        <h4><?php echo $u['fullname'];?></h4>
-        AMERICAN INTERNATIONAL UNIVERSITY BANGLADESH<br>
-        <?php echo "Department: ".$deptName['deptname'];?><br>
-        <?php echo "ID: ". $u['username'];?><br>
-        <?php echo "Phone: ". $u['phone'];?><br>
-        <?php echo "Email: ". $u['email'];?><br>
-        </p>
+    <div class="row login100-form">
+
+        <div class="col-seven md-six tab-full popular">
+            <h3>Faculty Details</h3>
+            <hr>
+            <div class="login104-form ">
+                <table class="login100-form validate-form p-b-33 p-t-5">
+                    <?php
+                    $userList = getFaculty();
+
+                    if(empty($userList)){
+                        echo "<h4>"."Nothing to Show!!"."</h4>";
+                    }else{
+                    ?>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>User ID</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                    <?php
+                    foreach ($userList as $b){
+                        $deptName = getDept($b['deptid']); ?>
+                    <tr>
+                        <td><?php echo $b['fullname'];?></td>
+                        <td><?php echo $b['username'];?></td>
+                        <td><?php echo $deptName['deptname'];?></td>
+                        <td><?php echo $b['email']; ?></td>
+                        <td><?php echo $b['phone']; ?></td>
+                        <td>
+                            <form action="controller/deleteFaculty.php" method="POST">
+                                <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
+                                    DELETE
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php }}?>
+                </table>
+            </div>
+
+        </div>
     </div>
-         <br>
-     <?php } ?>
 
 </section>
 <footer class="s-footer">

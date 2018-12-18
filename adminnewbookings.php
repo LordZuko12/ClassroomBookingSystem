@@ -54,8 +54,8 @@ if(!isset($_SESSION['username']))
                        <li class="has-children">
                 <a href="#0" title="">Booking</a>
                 <ul class="sub-menu">
-           <li><a href="adminnewbookings.php">New Booking</a></li>
-            <li><a href="adminCancelBookings.php">Cancel Booking</a></li>
+           <li><a href="adminnewbookings.php">Create Booking</a></li>
+            <li><a href="adminCancelBookings.php">View Booking</a></li>
                 </ul>
             </li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
@@ -94,15 +94,7 @@ if(!isset($_SESSION['username']))
                                echo "Username: ".$user['username']?>" readonly>
                     </div>
                     <div>
-                        <p style="font-size: 18px">Faculty ID</p>
-                        <select id="facul" name="id" class="input102">
-                            <option value="faculty">Faculty</option>
-                            <?php
-                            $faculty = getFaculty();
-                            foreach($faculty as $f) {?>
-                                    <option value="<?php echo $f['username']?>"><?php echo $f['username']?></option>
-                                <?php }?>
-                        </select>
+                        <input class="input100" type="text" name="id" id ="facul" placeholder="Faculty ID" onkeyup="checkUserID(this.value)">
                         <span class="input103" id="faculSpan"></span>
                     </div>
                     <div >
