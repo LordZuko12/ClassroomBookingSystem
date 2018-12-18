@@ -270,7 +270,7 @@ function validateForm() {
         if(!isValidPass(password.value.toString()))
         {
             password.style.borderColor = "red";
-            document.getElementById("passSpan").innerText = "Must be a combination of Capital ans Small letters wih Digits and Special Characters with minimum length 8";
+            document.getElementById("passSpan").innerText = "number,capital,small and special charecter needed(length 8)";
             validPass = false;
         }else{
 

@@ -45,11 +45,11 @@ if(!isset($_SESSION['username']))
 
         <ul class="header__nav">
             <li class="current"><a href="adminhome.php" title="">Home</a></li>
-                           <li class="has-children">
+            <li class="has-children">
                 <a href="#0" title="">Booking</a>
                 <ul class="sub-menu">
-           <li><a href="adminnewbookings.php">Create Booking</a></li>
-            <li><a href="adminCancelBookings.php">View Booking</a></li>
+                    <li><a href="adminnewbookings.php">Create Booking</a></li>
+                    <li><a href="adminCancelBookings.php">View Booking</a></li>
                 </ul>
             </li>
             <li><a href="adminbookinglog.php" title="">Booking Log</a></li>
@@ -84,32 +84,32 @@ if(!isset($_SESSION['username']))
                     if(empty($userList)){
                         echo "<h4>"."Nothing to Show!!"."</h4>";
                     }else{
-                    ?>
-                    <tr>
-                        <th>Full Name</th>
-                        <th>User ID</th>
-                        <th>Department</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                    </tr>
-                    <?php
-                    foreach ($userList as $b){
-                        $deptName = getDept($b['deptid']); ?>
-                    <tr>
-                        <td><?php echo $b['fullname'];?></td>
-                        <td><?php echo $b['username'];?></td>
-                        <td><?php echo $deptName['deptname'];?></td>
-                        <td><?php echo $b['email']; ?></td>
-                        <td><?php echo $b['phone']; ?></td>
-                        <td>
-                            <form action="controller/deleteFaculty.php" method="POST">
-                                <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
-                                    DELETE
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php }}?>
+                        ?>
+                        <tr>
+                            <th>Full Name  </th>
+                            <th>User ID  </th>
+                            <th>Department  </th>
+                            <th>Email  </th>
+                            <th>Phone  </th>
+                        </tr>
+                        <?php
+                        foreach ($userList as $b){
+                            $deptName = getDept($b['deptid']); ?>
+                            <tr>
+                                <td><?php echo $b['fullname'];?></td>
+                                <td><?php echo $b['username'];?></td>
+                                <td><?php echo $deptName['deptname'];?></td>
+                                <td><?php echo $b['email']; ?></td>
+                                <td><?php echo $b['phone']; ?></td>
+                                <td>
+                                    <form action="controller/deleteFaculty.php" method="POST">
+                                        <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
+                                            DELETE
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php }}?>
                 </table>
             </div>
 

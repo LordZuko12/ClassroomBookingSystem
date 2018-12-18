@@ -35,18 +35,18 @@
 					<div class="wrap-input100 validate-input">
 						<input id="id" class="input100" type="text" name="id" placeholder="Username" onblur="checkUserID(this.value)">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
-						<span  class="input103"id="idSpan"></span>
+						<span  class="stop"id="idSpan"></span>
 					</div>
 					<div class="wrap-input100 validate-input">
 						<input id="name" class="input100" type="text" name="name" placeholder="Full name" onkeyup="checkUserName(this)">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
-						<span class="input103" id="nameSpan"></span>
+						<span class="stop" id="nameSpan"></span>
 					</div>
 					<div class="wrap-input100 validate-input">
 						<span class="focus-input100" data-placeholder="&#xe88e;"></span>
 						<p class="input100">Department</p>
 
-                        <select id="dept" name="department" class="input102">
+                        <select id="dept" name="department" class="inputstop">
                             <option value="select">SELECT</option>
                             <?php
                             include('controller/fetchList.php');
@@ -57,47 +57,43 @@
                             <?php }}?>
                         </select>
 
-						<span class="input103" id="deptSpan"></span>
+						<span class="stop" id="deptSpan"></span>
 
 					</div>
 					<div class="wrap-input100 validate-input" >
 						<input id="email" class="input100" type="Email" name="email" placeholder="Email" onblur="checkEmail(this.value)">
 						<span class="focus-input100" data-placeholder="&#xe818;"></span>
-						<span class="input103" id="emailSpan"></span>
+						<span class="stop" id="emailSpan"></span>
 					</div>
                     
 					<div class="wrap-input100 validate-input" >
 						<input id="phone" class="input100" type="text" name="phone" placeholder="Phone">
 						<span class="focus-input100" data-placeholder="&#xe830;"></span>
-						<span class="input103" id="phoneSpan"></span>
+						<span class="stop" id="phoneSpan"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input">
+					<div class="wrap-input200 validate-input">
 						<input id="password" class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
-						<span class="input103" id="passSpan"></span>
+						<span class="stop" id="passSpan"></span>
 					</div>
 					<div class="wrap-input100 validate-input">
 						<input id="repassword" class="input100" type="password" name="repassword" placeholder="Confirm Password" onkeyup="test(this)">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
-						<span id="repassSpan"></span>
+						<span class="stop" id="repassSpan"></span>
 					</div>
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="submit" value="Submit">
-							SUBMIT
-						</button>
+						<input class="login100-form-btn" type="submit" value="Submit">
 					</div>
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="RESET" value="RESET">
-							RESET
-						</button>
+						<input class="login100-form-btn" type="RESET" value="RESET">
 					</div>
 					<br>
 					<hr>
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="RESET" value="RESET">
-							<a href ="index.html">Go Back</a>
-						</button>
+
+							<a class="login100-form-btn" href ="index.html">Go Back</a>
+
 					</div>
 				</form>
 			</div>

@@ -95,7 +95,7 @@ if(!isset($_SESSION['username']))
                                 <option value="<?php echo $t['typename']?>"><?php echo $t['typename']?></option>
                             <?php }?>
                     </select>
-                    <span id="typeSpan"></span>
+                    <span class="stopp" id="typeSpan"></span>
 
                     <p class="input100">Room Location</p>
                     <select id="roomlocation" name="roomlocation" class="input102">
@@ -106,11 +106,11 @@ if(!isset($_SESSION['username']))
                             <option value="<?php echo $l['name']?>"><?php echo $l['name']?></option>
                         <?php }?>
                     </select>
-                    <span id="locationSpan"></span>
+                    <span class="stopp" id="locationSpan"></span>
 
                     <div >
                         <input id="room" class="input100" type="text" name="room" placeholder="Room" onkeyup="checkRoomName(this.value)">
-                        <span id="roomSpan"></span>
+                        <span class="stopp" id="roomSpan"></span>
                     </div>
 
                     <br><br>

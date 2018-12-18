@@ -90,7 +90,7 @@ if(!isset($_SESSION['username']))
 
                     <div >
                         <input id="dept" class="input100" type="text" name="department" placeholder="Department" onkeyup="checkDeptName(this.value)">
-                        <span id="deptSpan" ></span>
+                        <span class="stopp" id="deptSpan" ></span>
                     </div>
 
                     <br><br>

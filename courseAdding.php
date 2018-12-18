@@ -88,7 +88,7 @@ if(!isset($_SESSION['username']))
                 <form class="login100-form validate-form p-b-33 p-t-5" action="controller/addCourse.php" onsubmit="return validateFormCourse()" method="post" >
                     <div >
                         <input id = "coursename" class="input100" type="text" name="coursename" placeholder="Course Name" onkeyup="checkCourseName(this.value)">
-                        <span class="input103" id="courseSpan"></span>
+                        <span class="stopp" id="courseSpan"></span>
                     </div>
 
                     <p class="input100">Department</p>
@@ -101,7 +101,7 @@ if(!isset($_SESSION['username']))
                                 <option value="<?php echo $d['deptname']?>"><?php echo $d['deptname']?></option>
                             <?php }}?>
                     </select>
-                    <span class="input103" id="deptSpan"></span>
+                    <span class="stopp" id="deptSpan"></span>
 
                     <div class="container-login100-form-btn m-t-32" >
                         <button class="login100-form-btn" type="submit" value="submit">
