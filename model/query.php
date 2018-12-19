@@ -336,20 +336,7 @@ function getBookingDetails($bookId){
     return $bookDetails;
 }
 
-function getAllFaculty(){
 
-    $sql = "SELECT * FROM user WHERE status = 1 AND type = 2";
-    $result = execute($sql);
-
-    $facultyList = array();
-
-    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
-    {
-        $facultyList[$i] = $row;
-    }
-
-    return $facultyList;
-}
 
 function getAllCourse(){
 
@@ -568,4 +555,48 @@ function getAllBookingDetailsPaginationModel($offset, $no_of_records_per_page){
 
     return $bookList;
 }
+function getAllFaculty(){
+
+    $sql = "SELECT * FROM user WHERE status = 1 AND type = 2";
+    $result = execute($sql);
+
+    $facultyList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $facultyList[$i] = $row;
+    }
+
+    return $facultyList;
+}
+function getFacultyPaginationModel($offset, $no_of_records_per_page){
+    $sql= "select * from user LIMIT $offset, $no_of_records_per_page";
+
+    $result = execute($sql);
+
+    $facultyList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $facultyList[$i] = $row;
+    }
+
+    return $facultyList;
+}
+function getUserRequestPaginationModel($offset, $no_of_records_per_page){
+    $sql= "select * from user where status=0  LIMIT $offset, $no_of_records_per_page";
+    $result = execute($sql);
+
+    $userList = array();
+
+    for($i = 0; $row = mysqli_fetch_assoc($result); ++$i)
+    {
+        $userList[$i] = $row;
+    }
+
+    return $userList;
+
+}
+
+
 ?>

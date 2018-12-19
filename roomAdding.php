@@ -123,7 +123,7 @@ if(!isset($_SESSION['username']))
                 </form>
 
             </div>
-            <div class="row login102-form">
+            <div style="overflow: scroll" class="row login102-form">
                 <h1> Classroom List</h1>
                 <table class="login100-form validate-form p-b-33 p-t-5">
                     <tr>

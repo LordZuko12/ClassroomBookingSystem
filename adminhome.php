@@ -97,54 +97,108 @@ if(!isset($_SESSION['username']))
 
 <div class="row login100-form">
 
-    <div class="col-seven md-six tab-full popular">
+
         <h3>User Requests For Approval</h3>
-        <div class="login104-form ">
-            <table class="login100-form validate-form p-b-33 p-t-5">
-                <?php
-                    $userList = getUserRequest();
+    <?php
+    $conn= mysqli_connect('localhost','root','','cbs');
 
-                    if(empty($userList)){
-                        echo "<h4>"."No New Requests Today!!"."</h4>";
-                    }else{
-                ?>
-                <tr>
-                    <th>Full Name</th>
-                    <th>User ID</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                </tr>
-                <?php
+    if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+        $pageno = 1;
+    }
+
+    $no_of_records_per_page = 3;
+    $offset = ($pageno-1) * $no_of_records_per_page;
+
+    $total_pages_sql = "SELECT COUNT(*) FROM booking";
+    $result = mysqli_query($conn,$total_pages_sql);
+    $total_rows = mysqli_fetch_array($result)[0];
+    $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+    //$statement= getAllBookingDetailsPagination($offset, $no_of_records_per_page);
+    $statement="select * from booking LIMIT $offset, $no_of_records_per_page";
+    $res_data = mysqli_query($conn, $statement);
+
+    if (mysqli_num_rows($res_data) > 0)
+    {
+        //while($row = mysqli_fetch_assoc($res_data))
+        //{
+        echo "<table class=\"login100-form validate-form p-b-33 p-t-5\">";
+        ?>
+        <tr>
+            <th>Full Name</th>
+            <th>User ID</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        <?php
+
+        //$bookList = getAllBookingDetails();
+        //$bookList = getAllBookingDetailsPagination($offset, $no_of_records_per_page);
+        //$userList=getFacultypagination($offset, $no_of_records_per_page);
+        // $userList=getFaculty();
+        //$userList = getUserRequest();
+        $userList=getUserRequestPagination($offset, $no_of_records_per_page);
+
                 foreach ($userList as $b){?>
-                        <tr>
-                            <td><?php echo $b['fullname'];?></td>
-                            <td><?php echo $b['username'];?></td>
-                            <td><?php echo $b['email']; ?></td>
-                            <td><?php echo $b['phone']; ?></td>
-                            <td>
-                                <form action="controller/confirmUserDetails.php" method="POST">
-                                    <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
-                                        CONFIRM
-                                    </button>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="controller/cancelUserDetails.php" method="POST">
-                                    <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
-                                        CANCEL
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php }}?>
-            </table>
-        </div>
 
-    </div>
+            <tr>
+                <td><?php echo $b['fullname'];?></td>
+                <td><?php echo $b['username'];?></td>
+                <td><?php echo $b['email']; ?></td>
+                <td><?php echo $b['phone']; ?></td>
+                <td>
+                    <form action="controller/confirmUserDetails.php" method="POST">
+                        <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
+                            CONFIRM
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form action="controller/cancelUserDetails.php" method="POST">
+                        <button class="login100-form-btn" type="submit" value="<?php echo $b['id'];?>" name="userId">
+                            CANCEL
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <?php }
+        echo "</table>";
+
+        //}
+    }
+    else
+    {
+        echo "Nothing found in db";
+    }
+    mysqli_close($conn);
+    ?>
+
 
 
 </div>
-<br>
+</div>>
+<div class="login111-form">
+    <div class="row pagination-wrap">
+        <div class="col-full">
+            <nav class="pgn">
+                <ul class="pagination">
+                    <li ><a style="font-size: large" href="?pageno=1">First</a></li>
+                    <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                        <a style="font-size: large" href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+                    </li>
+                    <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                        <a style="font-size: large" href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+                    </li>
+                    <li><a style="font-size: large" href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
 
 </section>
 <footer class="s-footer">

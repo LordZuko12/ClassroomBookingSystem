@@ -59,12 +59,7 @@ function getBook($bookId){
     return $bookDetails;
 }
 
-function getFaculty(){
 
-    $faculty = getAllFaculty();
-
-    return $faculty;
-}
 
 function getALLCourseName(){
 
@@ -73,12 +68,7 @@ function getALLCourseName(){
     return $course;
 }
 
-function getUserRequest(){
 
-    $user = getAllUserRequest();
-
-    return $user;
-}
 
 function getDept($deptId){
 
@@ -152,4 +142,29 @@ function getAllBookingDetailsPagination($offset, $no_of_records_per_page)
     $bookingListPagination= getAllBookingDetailsPaginationModel($offset, $no_of_records_per_page);
     return $bookingListPagination;
 }
+function getFaculty(){
+
+    $faculty = getAllFaculty();
+
+    return $faculty;
+}
+
+function getFacultyPagination($offset, $no_of_records_per_page)
+{
+    $facultyListPagination= getFacultyPaginationModel($offset, $no_of_records_per_page);
+    return $facultyListPagination;
+}
+function getUserRequest(){
+
+    $user = getAllUserRequest();
+
+    return $user;
+}
+function getUserRequestPagination($offset, $no_of_records_per_page){
+
+    $UserRequestPagination= getUserRequestPaginationModel($offset, $no_of_records_per_page);
+    return $UserRequestPagination;
+}
+
+
 ?>
